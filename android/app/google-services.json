@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279740983075",
+    "project_id": "semper-elections",
+    "storage_bucket": "semper-elections.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279740983075:android:aa9f2ca5bfec756204ce96",
+        "android_client_info": {
+          "package_name": "com.example.hostels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279740983075-rbofmnl89smtldcgbh0g5pr62b4lncpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgqLq1HYvIeUAWaQD0xLrxTK-CZzWqhBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279740983075-rbofmnl89smtldcgbh0g5pr62b4lncpv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
