@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:hostels/resources/color_resources.dart';
 import 'package:hostels/paystack/modal/paystack_modal.dart';
-import 'package:hostels/widgets/space.dart';
+import 'package:hostels/widgets/space/space.dart';
 
 Future<dynamic> showPaystackModal(
   BuildContext context,

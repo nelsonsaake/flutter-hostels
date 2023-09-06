@@ -15,14 +15,14 @@ class PaystackService {
 
   static init() async {}
 
-  static Future<String> paystackurl() async {
+  static Future<String> paystackurl(String email, double amount) async {
     final headers = {"Authorization": "Bearer $_sk"};
 
     final dio = Dio(BaseOptions(headers: headers));
 
     final req = GetPaymentUrlRequest(
-      email: "nelsonsaakekofi@gmail.com",
-      amount: 1000,
+      email: email,
+      amount: (amount * 100).toInt(),
     );
 
     final resp = await PaystackClient(dio).getPaymentUrl(req);
@@ -30,11 +30,15 @@ class PaystackService {
     return resp.data?.authorizationUrl ?? "";
   }
 
-  static Future showModal(BuildContext context) async {
+  static Future showModal(
+    BuildContext context,
+    String email,
+    double amount,
+  ) async {
     // ...
     return showPaystackModal(
       context,
-      paystackurl(),
+      paystackurl(email, amount),
     );
   }
 }

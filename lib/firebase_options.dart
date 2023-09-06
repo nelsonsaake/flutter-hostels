@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,40 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDz7gw3Hs3APsn_dB_ihXRqyhC5DNKfS78',
-    appId: '1:279740983075:web:b5b029c50dc9c96004ce96',
-    messagingSenderId: '279740983075',
-    projectId: 'semper-elections',
-    authDomain: 'semper-elections.firebaseapp.com',
-    storageBucket: 'semper-elections.appspot.com',
-    measurementId: 'G-ZBL8NF32P8',
+    apiKey: 'AIzaSyA0WgN0MUbSMjnzIdosj5DQwukhbTULWi4',
+    appId: '1:901402058388:web:b67a4bdcdcd31a97c25e81',
+    messagingSenderId: '901402058388',
+    projectId: 'flutterfirebaseauth-1c71a',
+    authDomain: 'flutterfirebaseauth-1c71a.firebaseapp.com',
+    databaseURL: 'https://flutterfirebaseauth-1c71a.firebaseio.com',
+    storageBucket: 'flutterfirebaseauth-1c71a.appspot.com',
+    measurementId: 'G-6CP2W09NXS',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBgqLq1HYvIeUAWaQD0xLrxTK-CZzWqhBk',
-    appId: '1:279740983075:android:aa9f2ca5bfec756204ce96',
-    messagingSenderId: '279740983075',
-    projectId: 'semper-elections',
-    storageBucket: 'semper-elections.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBpDRSFuxP183w12GRxuGefT7ohfmIJdGw',
-    appId: '1:279740983075:ios:1ba1c877dde5854504ce96',
-    messagingSenderId: '279740983075',
-    projectId: 'semper-elections',
-    storageBucket: 'semper-elections.appspot.com',
-    iosClientId: '279740983075-je83b1rkaidr1tfvo4ra0kp1uj22rd69.apps.googleusercontent.com',
-    iosBundleId: 'com.example.hostels',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBpDRSFuxP183w12GRxuGefT7ohfmIJdGw',
-    appId: '1:279740983075:ios:a5c634a9fb0d376a04ce96',
-    messagingSenderId: '279740983075',
-    projectId: 'semper-elections',
-    storageBucket: 'semper-elections.appspot.com',
-    iosClientId: '279740983075-e1do52t8vqgaoe8m2o03kjqn9h3os1t8.apps.googleusercontent.com',
-    iosBundleId: 'com.example.hostels.RunnerTests',
+    apiKey: 'AIzaSyAb8DdSAfTtrmacn7wLERHJA1O0PqEF0vQ',
+    appId: '1:901402058388:android:2d1685cbe604814dc25e81',
+    messagingSenderId: '901402058388',
+    projectId: 'flutterfirebaseauth-1c71a',
+    databaseURL: 'https://flutterfirebaseauth-1c71a.firebaseio.com',
+    storageBucket: 'flutterfirebaseauth-1c71a.appspot.com',
   );
 }

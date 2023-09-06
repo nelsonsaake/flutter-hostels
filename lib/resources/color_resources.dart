@@ -7,9 +7,9 @@ class ColorResources {
 
   static const green = Color(0xFF2D4354);
 
-  static const dark = Color(0xFF20212B);
+  static const dark = Color(0xFF1B1B1B);
 
-  static LinearGradient get backgroundGradient {
+  static LinearGradient get darkBackgroundGradient {
     return LinearGradient(
       colors: const [
         Color(0xFF2D4354),
@@ -27,7 +27,7 @@ class ColorResources {
     );
   }
 
-  static LinearGradient get backgroundGradient2 {
+  static LinearGradient get lightBackgroundGradient {
     return LinearGradient(
       colors: [
         const Color(0xFFFED7A5).withOpacity(.5),
@@ -41,6 +41,18 @@ class ColorResources {
       ],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
+      tileMode: TileMode.clamp,
+    );
+  }
+
+  static LinearGradient get lightBackgroundGradient2 {
+    return const LinearGradient(
+      colors: [
+        green,
+        Colors.transparent,
+      ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
       tileMode: TileMode.clamp,
     );
   }

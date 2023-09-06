@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firedart/firedart.dart' as fd;
+import 'package:hostels/firestore/firestore_config.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 
-mixin FirebaseLoginViewModelMixin on ContextViewModel {
+mixin FirebaseAuthViewModelMixin on ContextViewModel {
   //...
 
-  static UserCredential? _userCredential;
+  User? get user => FirebaseAuth.instance.currentUser;
 
-  static User? _user;
+  // is logged in
 
-  static User? get user => _user;
+  bool get isLoggedIn => user != null;
 
   // is email verified
 
@@ -16,14 +18,15 @@ mixin FirebaseLoginViewModelMixin on ContextViewModel {
 
   // register
 
-  Future _register(String email, String password) async {
-    _userCredential = await FirebaseAuth.instance
+  Future _register(String email, String password, [String? name]) async {
+    await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    _user = _userCredential?.user;
+    await FirebaseAuth.instance.currentUser?.updateDisplayName(name);
+    await _firedartLogin(email, password);
   }
 
-  Future register(String email, String password) {
-    return runBusyFuture(_register(email, password));
+  Future register(String email, String password, [String? name]) {
+    return runBusyFuture(_register(email, password, name));
   }
 
   // send email verification
@@ -36,12 +39,22 @@ mixin FirebaseLoginViewModelMixin on ContextViewModel {
     return runBusyFuture(_sendEmailVerification());
   }
 
+  // send password reset email
+
+  Future _sendPasswordResetEmail(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  Future sendPasswordResetEmail(String email) async {
+    return runBusyFuture(_sendPasswordResetEmail(email));
+  }
+
   // login
 
   Future _login(String email, String password) async {
-    _userCredential = await FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    _user = _userCredential?.user;
+    await _firedartLogin(email, password);
   }
 
   Future login(String email, String password) {
@@ -51,11 +64,32 @@ mixin FirebaseLoginViewModelMixin on ContextViewModel {
   // logout
 
   Future _logout() async {
-    _user = null;
     await FirebaseAuth.instance.signOut();
   }
 
   Future logout() async {
     return runBusyFuture(_logout());
+  }
+
+  // firedart login
+
+  Future _firedartLogin(String email, String password) async {
+    await fd.FirebaseAuth.instance.signIn(email, password);
+  }
+
+  // def firedart login
+
+  Future firestoreinit() async {
+    await _firedartLogin(FirestoreConfig.email, FirestoreConfig.password);
+  }
+
+  // refresh user data
+
+  Future _refreshUserData() async {
+    await FirebaseAuth.instance.currentUser?.reload();
+  }
+
+  Future refreshUserData() {
+    return runBusyFuture(_refreshUserData());
   }
 }

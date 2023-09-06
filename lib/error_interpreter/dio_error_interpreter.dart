@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class DioExceptionInterpreter {
-  String interpretErrorResponse(DioException dioError) {
-    // is applied to DioException.response to get a response message if available
-    // for now we simply assume is there is a response it's a SemperClient ErrorResponse
+  //...
 
+  String interpretErrorResponse(DioException dioError) {
     if (dioError.response?.data is Map<String, dynamic>) {
       return dioError.response?.data["message"] ??
           dioError.response?.data["errors"];
@@ -16,8 +15,6 @@ class DioExceptionInterpreter {
   }
 
   String interpretInnerError(DioException dioError) {
-    // is applied to DioExceptionType.unknown to get a simpler and meaningful error message
-
     switch (dioError.error.runtimeType) {
       case SocketException:
         final err = dioError.error as SocketException;
