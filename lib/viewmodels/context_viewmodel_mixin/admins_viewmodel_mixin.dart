@@ -1,4 +1,4 @@
-import 'package:hostels/firestore/collections/admins.dart';
+import 'package:hostels/firestore/collections/users.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 
 mixin AdminsViewModelMixin on ContextViewModel {
@@ -10,18 +10,18 @@ mixin AdminsViewModelMixin on ContextViewModel {
   bool? isAdmin(email) => _adminStatus[email];
 
   Future _getIsAdmin(String email) async {
-    _adminStatus[email] = await Admins.exists(email);
+    _adminStatus[email] = await Users.isAdmin(email);
   }
 
   Future getIsAdmin(String email) async {
     return runBusyFuture(_getIsAdmin(email));
   }
 
-  Future _toggleAdminAccess(String email) async {
-    _adminStatus[email] = await Admins.toggleExists(email);
+  Future _toggleIsAdmin(String email) async {
+    _adminStatus[email] = await Users.toggleIsAmin(email);
   }
 
-  Future toggleAdminAccess(String email) async {
-    return runBusyFuture(_toggleAdminAccess(email));
+  Future toggleIsAdmin(String email) async {
+    return runBusyFuture(_toggleIsAdmin(email));
   }
 }

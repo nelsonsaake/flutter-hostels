@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firedart/firedart.dart' as fd;
+import 'package:hostels/firestore/collections/users.dart';
 import 'package:hostels/firestore/firestore_config.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
+import 'package:hostels/models/user.dart' as fd;
 
 mixin FirebaseAuthViewModelMixin on ContextViewModel {
   //...
@@ -19,9 +21,12 @@ mixin FirebaseAuthViewModelMixin on ContextViewModel {
   // register
 
   Future _register(String email, String password, [String? name]) async {
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
     await FirebaseAuth.instance.currentUser?.updateDisplayName(name);
+    await Users.save(fd.AppUser(email: email, name: name));
     await _firedartLogin(email, password);
   }
 
@@ -91,5 +96,17 @@ mixin FirebaseAuthViewModelMixin on ContextViewModel {
 
   Future refreshUserData() {
     return runBusyFuture(_refreshUserData());
+  }
+
+  // update user info
+
+  Future _updateDisplayName(String displayName) async {
+    await user?.updateDisplayName(displayName);
+    await Users.updateDisplayName(user?.email, displayName);
+    await refreshUserData();
+  }
+
+  Future updateDisplayName(String displayName) async {
+    return _updateDisplayName(displayName);
   }
 }

@@ -12,9 +12,7 @@ class Payments {
   static Future<Payment> save(Payment v) async {
     //...
 
-    final doc = await ref.add({});
-
-    final id = doc.id;
+    final id = v.id ?? (await ref.add({})).id;
 
     final map = v.toMap();
 
@@ -39,7 +37,7 @@ class Payments {
     return Payment.fromMap(doc.map);
   }
 
-  static Future<Payment> update(String id, Payment payment) async {
+  static Future<Payment> set(String id, Payment payment) async {
     //...
 
     final map = payment.toMap();

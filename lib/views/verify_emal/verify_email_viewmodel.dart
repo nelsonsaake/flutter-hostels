@@ -12,7 +12,7 @@ class VerifyEmailViewModel extends ContextViewModel
   onContinue() async {
     await refreshUserData();
     if (isEmailVerified) {
-      nav.navigateToRoomsView();
+      nav.navigateToStoreView();
     } else {
       showMessage("Please verify your email.");
     }

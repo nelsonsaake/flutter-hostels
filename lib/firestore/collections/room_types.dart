@@ -12,9 +12,7 @@ class RoomTypes {
   static Future<RoomType> save(RoomType v) async {
     //...
 
-    final doc = await ref.add({});
-
-    final id = doc.id;
+    final id = v.id ?? (await ref.add({})).id;
 
     final map = v.toMap();
 
@@ -39,7 +37,7 @@ class RoomTypes {
     return RoomType.fromMap(doc.map);
   }
 
-  static Future<RoomType> update(String id, RoomType roomType) async {
+  static Future<RoomType> set(String id, RoomType roomType) async {
     //...
 
     final map = roomType.toMap();

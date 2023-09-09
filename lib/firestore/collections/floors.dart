@@ -12,9 +12,7 @@ class Floors {
   static Future<Floor> save(Floor v) async {
     //...
 
-    final doc = await ref.add({});
-
-    final id = doc.id;
+    final id = v.id ?? (await ref.add({})).id;
 
     final map = v.toMap();
 
@@ -39,7 +37,7 @@ class Floors {
     return Floor.fromMap(doc.map);
   }
 
-  static Future<Floor> update(String id, Floor floor) async {
+  static Future<Floor> set(String id, Floor floor) async {
     //...
 
     final map = floor.toMap();

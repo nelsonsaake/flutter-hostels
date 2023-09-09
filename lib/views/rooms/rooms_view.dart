@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hostels/app/app.router.dart';
 import 'package:hostels/models/room.dart';
+import 'package:hostels/resources/color_resources.dart';
 import 'package:hostels/resources/string_resources.dart';
 import 'package:hostels/views/_layouts/view_layout.dart';
-import 'package:hostels/views/room_type_widget_modal/show_room_type_widget_modal.dart';
 import 'package:hostels/views/rooms/room/room_widget.dart';
 import 'package:hostels/views/rooms/rooms_viewmodel.dart';
-import 'package:hostels/widgets/room_type/room_type_widget.dart';
 import 'package:hostels/widgets/search/search_input.dart';
 import 'package:hostels/widgets/space/space.dart';
 import 'package:stacked/stacked.dart';
@@ -18,13 +18,13 @@ class RoomsView extends StackedView<RoomsViewModel> {
     return ViewLayout(
       //...
 
-      title: StringResources.availableRooms,
+      title: StringResources.rooms,
 
       applyPadding: false,
 
-      showBackButton: false,
-
       isBusy: viewModel.isBusy,
+
+      fab: buildFab(viewModel),
 
       children: [
         //...
@@ -39,24 +39,31 @@ class RoomsView extends StackedView<RoomsViewModel> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SearchInput(
-              key: viewModel.serachKey,
+              key: viewModel.searchKey,
               controller: viewModel.search,
               hint: "room number, room type, floor",
             ),
           ),
 
-          const Space(64),
+          const Space(32),
         ],
 
-        if (viewModel.search.text.isEmpty) ...[
-          //...
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Center(
+            child: Text(
+              [
+                "Hit the floating plus button to add a new room.",
+              ].join("\n"),
+              textAlign: TextAlign.end,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
 
-          buildSectionTitle("Room Type"),
-
-          buildRoomTypeListing(viewModel),
-
-          const Space(64),
-        ],
+        const Space(32),
 
         for (var v in viewModel.roomsByFloors.entries) ...[
           //...
@@ -66,7 +73,10 @@ class RoomsView extends StackedView<RoomsViewModel> {
 
             buildSectionTitle(v.key.name ?? ""),
 
-            for (var room in v.value) buildRoomWidget(room),
+            for (var room in v.value) ...[
+              buildRoomWidget(room),
+              const Space.vertical(16),
+            ],
 
             const Space(64),
           ]
@@ -75,45 +85,22 @@ class RoomsView extends StackedView<RoomsViewModel> {
     );
   }
 
+  FloatingActionButton buildFab(RoomsViewModel viewModel) {
+    return FloatingActionButton(
+      onPressed: viewModel.nav.navigateToRoomsView,
+      backgroundColor: ColorResources.green,
+      shape: const CircleBorder(),
+      child: const Icon(
+        Icons.add,
+        color: Colors.white,
+      ),
+    );
+  }
+
   Padding buildRoomWidget(Room room) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: RoomWidget(room),
-    );
-  }
-
-  Builder buildRoomTypeListing(RoomsViewModel viewModel) {
-    return Builder(
-      builder: (context) {
-        const height = 200.0;
-        const width = 160.0;
-
-        return Container(
-          constraints: const BoxConstraints(
-            maxHeight: height,
-          ),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: [
-              for (var roomType in viewModel.roomTypes)
-                GestureDetector(
-                  onTap: () {
-                    showRoomTypeWidgetModal(
-                      context,
-                      roomType,
-                    );
-                  },
-                  child: RoomTypeWidget(
-                    roomType,
-                    height: height,
-                    width: width,
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
     );
   }
 

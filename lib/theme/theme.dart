@@ -23,10 +23,17 @@ final theme = ThemeData(
   ),
 
   drawerTheme: DrawerThemeData(
+    //...
+
     backgroundColor: ColorResources.dark,
+
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(0),
     ),
+  ),
+
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    shape: CircleBorder(),
   ),
 
   useMaterial3: true,

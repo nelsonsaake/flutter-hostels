@@ -6,11 +6,11 @@ mixin FirestoreActionsViewModelMixin on ContextViewModel {
   //...
 
   Future clear(String collection) {
-    return runErrorFuture(fsa.clear(collection));
+    return runBusyFuture(fsa.clear(collection));
   }
 
   Future fresh() {
-    return runErrorFuture(fsa.fresh());
+    return runBusyFuture(fsa.fresh());
   }
 
   Future seed() {

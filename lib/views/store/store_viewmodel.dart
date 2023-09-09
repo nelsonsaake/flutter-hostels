@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostels/factory/scaffold_keys.dart';
-import 'package:hostels/firestore/collections/rooms.dart';
 import 'package:hostels/models/room.dart';
 import 'package:hostels/models/room_type.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
@@ -9,10 +7,9 @@ import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/organise_rooms_viewmodel_mixin.dart';
-import 'package:hostels/views/get_delete_confirmation/get_delete_confirmation.dart';
 import 'package:hostels/views/room_type_widget_modal/show_room_type_widget_modal.dart';
 
-class RoomsViewModel extends ContextViewModel
+class StoreViewModel extends ContextViewModel
     with
         FirebaseAuthViewModelMixin,
         GetRoomTypesViewModelMixin,
@@ -29,22 +26,6 @@ class RoomsViewModel extends ContextViewModel
   @override
   String get searchText => search.text;
 
-  Future _delete(BuildContext context, Room room) async {
-    final confirmation = await getDeleteConfirmation(
-      ScaffoldKeys.key.currentContext ?? context,
-      resource: "Room",
-    );
-    if (confirmation == true) {
-      await Rooms.delete(room.id);
-      await getRooms();
-      await organiseRoomsByFloors();
-    }
-  }
-
-  Future delete(BuildContext context, Room room) async {
-    await runBusyFuture(_delete(context, room));
-  }
-
   showBuyModal(
     BuildContext context,
     RoomType roomType,
@@ -55,6 +36,12 @@ class RoomsViewModel extends ContextViewModel
       roomType,
     );
   }
+
+  onTap(
+    BuildContext context,
+    RoomType roomType,
+    Room room,
+  ) {}
 
   init() async {
     await firestoreinit();

@@ -16,16 +16,16 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
     this.applyPadding,
     this.isBusy = false,
     this.noScroll = false,
-    this.showBackButton = true,
+    this.fab,
   });
 
   final Widget? child;
+  final Widget? fab;
   final List<Widget>? children;
   final String? title;
   final bool? applyPadding;
   final bool isBusy;
   final bool noScroll;
-  final bool showBackButton;
 
   EdgeInsets padding() {
     if (applyPadding != true) return EdgeInsets.zero;
@@ -143,11 +143,12 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
 
         ...buildDrawerSectionHeader("Account"),
 
-        // if logged in show logout button
+        // if logged in show profile, logout button
         // if not logged in show login or register button
         if (viewModel.isLoggedIn) ...[
           buildDrawerTile(
             "Profile",
+            viewModel.nav.navigateToProfileView,
           ),
           buildDrawerTile(
             "Logout",
@@ -173,7 +174,7 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
 
         buildDrawerTile(
           "Available Rooms",
-          viewModel.nav.navigateToRoomsView,
+          viewModel.nav.navigateToStoreView,
         ),
 
         if (viewModel.isAdminLoggedIn) ...[
@@ -182,16 +183,32 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
           ...buildDrawerSectionHeader("Admin"),
 
           ...[
-            "Admins",
+            {
+              "Users": viewModel.nav.navigateToUsersView,
+            },
             "Payments",
-            "Availability",
-            "Rooms",
+            {
+              "Rooms": viewModel.nav.navigateToRoomsView,
+            },
             "Floors",
             "RoomTypes",
           ].map(
-            (title) {
+            (v) {
+              String title = "";
+              VoidCallback action = () {};
+
+              if (v is String) {
+                title = v;
+              }
+
+              if (v is Map<String, VoidCallback>) {
+                title = v.entries.first.key;
+                action = v.entries.first.value;
+              }
+
               return buildDrawerTile(
                 title,
+                action,
               );
             },
           )
@@ -214,6 +231,7 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
       key: ScaffoldKeys.newKey,
       drawer: buildDrawer(viewModel),
       body: SafeArea(child: buildBody()),
+      floatingActionButton: fab,
     );
   }
 

@@ -15,7 +15,7 @@ class LoginViewModel extends ContextViewModel with FirebaseAuthViewModelMixin {
   Future submit() async {
     if (formKey.currentState!.validate()) {
       await login(email.text, password.text);
-      nav.navigateToRoomsView();
+      nav.navigateToStoreView();
     }
   }
 

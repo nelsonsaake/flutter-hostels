@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: StackedRouter().onGenerateRoute,
       initialRoute: [
         Routes.roomsView,
-        Routes.registerView,
         Routes.playgroundView,
+        Routes.roomsView,
+        Routes.registerView,
         Routes.loginView,
         Routes.verifyEmailView,
       ].first,
@@ -41,5 +42,5 @@ class MyApp extends StatelessWidget {
 // room current book capacity 
 // total capacity 
 // available capacity
-// edit profile
+// edit profile photo
 // splash screen

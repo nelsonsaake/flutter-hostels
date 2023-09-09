@@ -6,19 +6,21 @@ import 'package:hostels/viewmodels/context_viewmodel_mixin/admins_viewmodel_mixi
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firestore_actions_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
+import 'package:hostels/viewmodels/context_viewmodel_mixin/get_users_viewmodel_mixin.dart';
 
 class PlaygroundViewModel extends ContextViewModel
     with
         FirebaseAuthViewModelMixin,
         FirestoreActionsViewModelMixin,
         AdminsViewModelMixin,
-        GetRoomsViewModelMixin {
+        GetRoomsViewModelMixin,
+        GetUsersViewModelMixin {
   //...
 
   data() {
     //...
 
-    dynamic data = isAdmin("nelsonsaakekofi@gmail.com");
+    dynamic data = users;
 
     try {
       if (data == null) return "";
@@ -55,9 +57,9 @@ class PlaygroundViewModel extends ContextViewModel
   onPressed() async {
     //...
     await do1();
-    await toggleAdminAccess(_email);
-    // await fresh();
-    // await seed();
-    // await getRooms();
+    // await toggleIsAdmin(_email);
+    await fresh();
+    await seed();
+    await getUsers();
   }
 }

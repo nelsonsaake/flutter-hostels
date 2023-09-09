@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostels/app/app.router.dart';
 import 'package:hostels/helpers/format_capacity.dart';
 import 'package:hostels/helpers/format_price.dart';
 import 'package:hostels/models/floor.dart';
@@ -9,12 +10,10 @@ import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmodel_mixin.dart';
-import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 
 class RoomWidgetViewModel extends ContextViewModel
     with
         FirebaseAuthViewModelMixin,
-        GetRoomsViewModelMixin,
         GetFloorsViewModelMixin,
         GetRoomTypesViewModelMixin {
   //...
@@ -67,6 +66,14 @@ class RoomWidgetViewModel extends ContextViewModel
     }
 
     return PaystackService.showModal(context, email, amount);
+  }
+
+  Future onTap(BuildContext context) {
+    //...
+
+    if (!isLoggedIn) return nav.navigateToLoginView();
+
+    return showBuyModal(context);
   }
 
   init() async {

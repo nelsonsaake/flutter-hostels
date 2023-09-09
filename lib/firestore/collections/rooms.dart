@@ -12,9 +12,7 @@ class Rooms {
   static Future<Room> save(Room v) async {
     //...
 
-    final doc = await ref.add({});
-
-    final id = doc.id;
+    final id = v.id ?? (await ref.add({})).id;
 
     final map = v.toMap();
 
@@ -39,7 +37,7 @@ class Rooms {
     return Room.fromMap(doc.map);
   }
 
-  static Future<Room> update(String id, Room room) async {
+  static Future<Room> set(String id, Room room) async {
     //...
 
     final map = room.toMap();
@@ -51,5 +49,8 @@ class Rooms {
     return room;
   }
 
-  // static Future<List<Room>> where() async {}
+  static Future delete(String? id) async {
+    if (id == null) return;
+    return ref.document(id).delete();
+  }
 }

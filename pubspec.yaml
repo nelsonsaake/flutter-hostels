@@ -44,6 +44,8 @@ dependencies:
   firebase_database: ^10.2.5
   firedart: ^0.9.7
   dotted_line: ^3.2.2
+  cached_network_image: ^3.2.3
+  proste_bezier_curve: ^2.0.2
 
 dev_dependencies:
   flutter_test:
