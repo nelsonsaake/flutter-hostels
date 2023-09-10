@@ -27,7 +27,7 @@ class DialogButton extends StatelessWidget {
     return TextButton(
       //...
 
-      onPressed: onTap,
+      onPressed: isBusy ? null : onTap,
 
       style: TextButton.styleFrom(
         //...

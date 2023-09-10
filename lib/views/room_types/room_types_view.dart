@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hostels/app/app.router.dart';
-import 'package:hostels/models/room.dart';
+import 'package:hostels/models/room_type.dart';
 import 'package:hostels/resources/color_resources.dart';
 import 'package:hostels/resources/string_resources.dart';
 import 'package:hostels/views/_layouts/view_layout.dart';
-import 'package:hostels/views/rooms/room/room_widget.dart';
-import 'package:hostels/views/rooms/rooms_viewmodel.dart';
 import 'package:hostels/widgets/search/search_input.dart';
 import 'package:hostels/widgets/space/space.dart';
 import 'package:stacked/stacked.dart';
 
-class RoomsView extends StackedView<RoomsViewModel> {
-  const RoomsView({super.key});
+import 'room_type/room_type_widget.dart';
+import 'room_types_viewmodel.dart';
+
+class RoomTypesView extends StackedView<RoomTypesViewModel> {
+  const RoomTypesView({super.key});
 
   @override
   Widget builder(BuildContext context, viewModel, child) {
     return ViewLayout(
       //...
 
-      title: StringResources.rooms,
+      key: viewModel.viewKey,
+
+      title: StringResources.roomTypes,
 
       applyPadding: false,
 
@@ -41,7 +44,7 @@ class RoomsView extends StackedView<RoomsViewModel> {
             child: SearchInput(
               key: viewModel.searchKey,
               controller: viewModel.search,
-              hint: "room number, room type, floor",
+              hint: "roomType",
             ),
           ),
 
@@ -53,7 +56,7 @@ class RoomsView extends StackedView<RoomsViewModel> {
           child: Center(
             child: Text(
               [
-                "Hit the floating plus button to add a new room.",
+                "Hit the floating plus button to add a new roomType.",
               ].join("\n"),
               textAlign: TextAlign.end,
               style: const TextStyle(
@@ -65,29 +68,20 @@ class RoomsView extends StackedView<RoomsViewModel> {
 
         const Space(32),
 
-        for (var v in viewModel.roomsByFloors.entries) ...[
+        for (var v in viewModel.filteredRoomTypes) ...[
           //...
 
-          if (v.value.isNotEmpty) ...[
-            //...
+          buildFloorWidget(v),
 
-            buildSectionTitle(v.key.name ?? ""),
-
-            for (var room in v.value) ...[
-              buildRoomWidget(room),
-              const Space.vertical(16),
-            ],
-
-            const Space(64),
-          ]
+          const Space.vertical(16),
         ],
       ],
     );
   }
 
-  FloatingActionButton buildFab(RoomsViewModel viewModel) {
+  FloatingActionButton buildFab(RoomTypesViewModel viewModel) {
     return FloatingActionButton(
-      onPressed: viewModel.nav.navigateToCreateRoomView,
+      onPressed: viewModel.nav.navigateToCreateRoomTypeView,
       backgroundColor: ColorResources.green,
       shape: const CircleBorder(),
       child: const Icon(
@@ -97,10 +91,10 @@ class RoomsView extends StackedView<RoomsViewModel> {
     );
   }
 
-  Padding buildRoomWidget(Room room) {
+  Padding buildFloorWidget(RoomType roomType) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: RoomWidget(room),
+      child: RoomTypeWidget(roomType),
     );
   }
 
@@ -117,12 +111,12 @@ class RoomsView extends StackedView<RoomsViewModel> {
   }
 
   @override
-  RoomsViewModel viewModelBuilder(BuildContext context) {
-    return RoomsViewModel();
+  RoomTypesViewModel viewModelBuilder(BuildContext context) {
+    return RoomTypesViewModel();
   }
 
   @override
-  void onViewModelReady(RoomsViewModel viewModel) {
+  void onViewModelReady(RoomTypesViewModel viewModel) {
     viewModel.init();
     super.onViewModelReady(viewModel);
   }

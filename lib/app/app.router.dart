@@ -5,20 +5,32 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i12;
+import 'package:flutter/material.dart' as _i20;
 import 'package:flutter/material.dart';
+import 'package:hostels/models/floor.dart' as _i22;
+import 'package:hostels/models/room.dart' as _i21;
+import 'package:hostels/models/room_type.dart' as _i23;
+import 'package:hostels/views/create_floor/create_floor_view.dart' as _i15;
+import 'package:hostels/views/create_room/create_room_view.dart' as _i12;
+import 'package:hostels/views/create_room_type/create_room_type_view.dart'
+    as _i18;
+import 'package:hostels/views/edit_floor/edit_floor_view.dart' as _i16;
+import 'package:hostels/views/edit_room/edit_room_view.dart' as _i13;
+import 'package:hostels/views/edit_room_type/edit_room_type_view.dart' as _i19;
+import 'package:hostels/views/floors/floors_view.dart' as _i14;
 import 'package:hostels/views/forgot_password/forgot_password_view.dart' as _i4;
 import 'package:hostels/views/login/login_view.dart' as _i5;
 import 'package:hostels/views/playground/playground_view.dart' as _i9;
 import 'package:hostels/views/profile/profile_view.dart' as _i10;
 import 'package:hostels/views/register/register_view.dart' as _i6;
 import 'package:hostels/views/reset_password/reset_password_view.dart' as _i7;
+import 'package:hostels/views/room_types/room_types_view.dart' as _i17;
 import 'package:hostels/views/rooms/rooms_view.dart' as _i3;
 import 'package:hostels/views/store/store_view.dart' as _i2;
 import 'package:hostels/views/users/users_view.dart' as _i11;
 import 'package:hostels/views/verify_emal/verify_email_view.dart' as _i8;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i13;
+import 'package:stacked_services/stacked_services.dart' as _i24;
 
 class Routes {
   static const storeView = '/store-view';
@@ -41,6 +53,22 @@ class Routes {
 
   static const usersView = '/users-view';
 
+  static const createRoomView = '/create-room-view';
+
+  static const editRoomView = '/edit-room-view';
+
+  static const floorsView = '/floors-view';
+
+  static const createFloorView = '/create-floor-view';
+
+  static const editFloorView = '/edit-floor-view';
+
+  static const roomTypesView = '/room-types-view';
+
+  static const createRoomTypeView = '/create-room-type-view';
+
+  static const editRoomTypeView = '/edit-room-type-view';
+
   static const all = <String>{
     storeView,
     roomsView,
@@ -52,6 +80,14 @@ class Routes {
     playgroundView,
     profileView,
     usersView,
+    createRoomView,
+    editRoomView,
+    floorsView,
+    createFloorView,
+    editFloorView,
+    roomTypesView,
+    createRoomTypeView,
+    editRoomTypeView,
   };
 }
 
@@ -97,35 +133,67 @@ class StackedRouter extends _i1.RouterBase {
       Routes.usersView,
       page: _i11.UsersView,
     ),
+    _i1.RouteDef(
+      Routes.createRoomView,
+      page: _i12.CreateRoomView,
+    ),
+    _i1.RouteDef(
+      Routes.editRoomView,
+      page: _i13.EditRoomView,
+    ),
+    _i1.RouteDef(
+      Routes.floorsView,
+      page: _i14.FloorsView,
+    ),
+    _i1.RouteDef(
+      Routes.createFloorView,
+      page: _i15.CreateFloorView,
+    ),
+    _i1.RouteDef(
+      Routes.editFloorView,
+      page: _i16.EditFloorView,
+    ),
+    _i1.RouteDef(
+      Routes.roomTypesView,
+      page: _i17.RoomTypesView,
+    ),
+    _i1.RouteDef(
+      Routes.createRoomTypeView,
+      page: _i18.CreateRoomTypeView,
+    ),
+    _i1.RouteDef(
+      Routes.editRoomTypeView,
+      page: _i19.EditRoomTypeView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StoreView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StoreView(),
         settings: data,
       );
     },
     _i3.RoomsView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.RoomsView(),
         settings: data,
       );
     },
     _i4.ForgotPasswordView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.ForgotPasswordView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
         settings: data,
       );
     },
     _i6.RegisterView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.RegisterView(),
         settings: data,
       );
@@ -134,7 +202,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ResetPasswordViewArguments>(
         orElse: () => const ResetPasswordViewArguments(),
       );
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i7.ResetPasswordView(key: args.key, email: args.email),
         settings: data,
@@ -144,27 +212,79 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<VerifyEmailViewArguments>(
         orElse: () => const VerifyEmailViewArguments(),
       );
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i8.VerifyEmailView(key: args.key, email: args.email),
         settings: data,
       );
     },
     _i9.PlaygroundView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.PlaygroundView(),
         settings: data,
       );
     },
     _i10.ProfileView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.ProfileView(),
         settings: data,
       );
     },
     _i11.UsersView: (data) {
-      return _i12.MaterialPageRoute<dynamic>(
+      return _i20.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.UsersView(),
+        settings: data,
+      );
+    },
+    _i12.CreateRoomView: (data) {
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.CreateRoomView(),
+        settings: data,
+      );
+    },
+    _i13.EditRoomView: (data) {
+      final args = data.getArgs<EditRoomViewArguments>(nullOk: false);
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => _i13.EditRoomView(args.room, key: args.key),
+        settings: data,
+      );
+    },
+    _i14.FloorsView: (data) {
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i14.FloorsView(),
+        settings: data,
+      );
+    },
+    _i15.CreateFloorView: (data) {
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i15.CreateFloorView(),
+        settings: data,
+      );
+    },
+    _i16.EditFloorView: (data) {
+      final args = data.getArgs<EditFloorViewArguments>(nullOk: false);
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => _i16.EditFloorView(args.floor, key: args.key),
+        settings: data,
+      );
+    },
+    _i17.RoomTypesView: (data) {
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i17.RoomTypesView(),
+        settings: data,
+      );
+    },
+    _i18.CreateRoomTypeView: (data) {
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i18.CreateRoomTypeView(),
+        settings: data,
+      );
+    },
+    _i19.EditRoomTypeView: (data) {
+      final args = data.getArgs<EditRoomTypeViewArguments>(nullOk: false);
+      return _i20.MaterialPageRoute<dynamic>(
+        builder: (context) =>
+            _i19.EditRoomTypeView(args.roomType, key: args.key),
         settings: data,
       );
     },
@@ -182,7 +302,7 @@ class ResetPasswordViewArguments {
     this.email,
   });
 
-  final _i12.Key? key;
+  final _i20.Key? key;
 
   final String? email;
 
@@ -209,7 +329,7 @@ class VerifyEmailViewArguments {
     this.email,
   });
 
-  final _i12.Key? key;
+  final _i20.Key? key;
 
   final String? email;
 
@@ -230,7 +350,88 @@ class VerifyEmailViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i13.NavigationService {
+class EditRoomViewArguments {
+  const EditRoomViewArguments({
+    required this.room,
+    this.key,
+  });
+
+  final _i21.Room room;
+
+  final _i20.Key? key;
+
+  @override
+  String toString() {
+    return '{"room": "$room", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant EditRoomViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.room == room && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return room.hashCode ^ key.hashCode;
+  }
+}
+
+class EditFloorViewArguments {
+  const EditFloorViewArguments({
+    required this.floor,
+    this.key,
+  });
+
+  final _i22.Floor floor;
+
+  final _i20.Key? key;
+
+  @override
+  String toString() {
+    return '{"floor": "$floor", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant EditFloorViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.floor == floor && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return floor.hashCode ^ key.hashCode;
+  }
+}
+
+class EditRoomTypeViewArguments {
+  const EditRoomTypeViewArguments({
+    required this.roomType,
+    this.key,
+  });
+
+  final _i23.RoomType roomType;
+
+  final _i20.Key? key;
+
+  @override
+  String toString() {
+    return '{"roomType": "$roomType", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant EditRoomTypeViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.roomType == roomType && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return roomType.hashCode ^ key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i24.NavigationService {
   Future<dynamic> navigateToStoreView([
     int? routerId,
     bool preventDuplicates = true,
@@ -302,7 +503,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> navigateToResetPasswordView({
-    _i12.Key? key,
+    _i20.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -319,7 +520,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> navigateToVerifyEmailView({
-    _i12.Key? key,
+    _i20.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -371,6 +572,127 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.usersView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateRoomView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.createRoomView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditRoomView({
+    required _i21.Room room,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editRoomView,
+        arguments: EditRoomViewArguments(room: room, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToFloorsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.floorsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateFloorView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.createFloorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditFloorView({
+    required _i22.Floor floor,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editFloorView,
+        arguments: EditFloorViewArguments(floor: floor, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToRoomTypesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.roomTypesView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCreateRoomTypeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.createRoomTypeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToEditRoomTypeView({
+    required _i23.RoomType roomType,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo<dynamic>(Routes.editRoomTypeView,
+        arguments: EditRoomTypeViewArguments(roomType: roomType, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -448,7 +770,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> replaceWithResetPasswordView({
-    _i12.Key? key,
+    _i20.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -465,7 +787,7 @@ extension NavigatorStateExtension on _i13.NavigationService {
   }
 
   Future<dynamic> replaceWithVerifyEmailView({
-    _i12.Key? key,
+    _i20.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -517,6 +839,127 @@ extension NavigatorStateExtension on _i13.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.usersView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCreateRoomView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.createRoomView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithEditRoomView({
+    required _i21.Room room,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.editRoomView,
+        arguments: EditRoomViewArguments(room: room, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithFloorsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.floorsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCreateFloorView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.createFloorView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithEditFloorView({
+    required _i22.Floor floor,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.editFloorView,
+        arguments: EditFloorViewArguments(floor: floor, key: key),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithRoomTypesView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.roomTypesView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCreateRoomTypeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.createRoomTypeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithEditRoomTypeView({
+    required _i23.RoomType roomType,
+    _i20.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return replaceWith<dynamic>(Routes.editRoomTypeView,
+        arguments: EditRoomTypeViewArguments(roomType: roomType, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

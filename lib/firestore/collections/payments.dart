@@ -48,4 +48,9 @@ class Payments {
 
     return payment;
   }
+
+  static Future delete(String? id) async {
+    if (id == null) return;
+    return ref.document(id).delete();
+  }
 }

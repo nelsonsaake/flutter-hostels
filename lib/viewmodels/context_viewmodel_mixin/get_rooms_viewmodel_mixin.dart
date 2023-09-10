@@ -5,7 +5,7 @@ import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 mixin GetRoomsViewModelMixin on ContextViewModel {
   //....
 
-  List<Room> _rooms = [];
+  static List<Room> _rooms = [];
 
   List<Room> get rooms => _rooms;
 

@@ -31,7 +31,7 @@ class Button extends StatelessWidget {
         elevation: 2,
       ),
 
-      onPressed: onTap,
+      onPressed: isBusy ? null : onTap,
 
       child: Center(
         child: isBusy

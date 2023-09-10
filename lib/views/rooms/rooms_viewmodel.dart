@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hostels/factory/scaffold_keys.dart';
+import 'package:hostels/error_interpreter/error_interpreter.dart';
 import 'package:hostels/firestore/collections/rooms.dart';
 import 'package:hostels/models/room.dart';
-import 'package:hostels/models/room_type.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_mixin.dart';
@@ -10,7 +9,6 @@ import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmo
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/organise_rooms_viewmodel_mixin.dart';
 import 'package:hostels/views/get_delete_confirmation/get_delete_confirmation.dart';
-import 'package:hostels/views/room_type_widget_modal/show_room_type_widget_modal.dart';
 
 class RoomsViewModel extends ContextViewModel
     with
@@ -31,7 +29,7 @@ class RoomsViewModel extends ContextViewModel
 
   Future _delete(BuildContext context, Room room) async {
     final confirmation = await getDeleteConfirmation(
-      ScaffoldKeys.key.currentContext ?? context,
+      context,
       resource: "Room",
     );
     if (confirmation == true) {
@@ -42,22 +40,14 @@ class RoomsViewModel extends ContextViewModel
   }
 
   Future delete(BuildContext context, Room room) async {
-    await runBusyFuture(_delete(context, room));
-  }
-
-  showBuyModal(
-    BuildContext context,
-    RoomType roomType,
-    Room room,
-  ) {
-    return showRoomTypeWidgetModal(
-      context,
-      roomType,
-    );
+    try {
+      await _delete(context, room);
+    } catch (e) {
+      showMessage(ErrorInterpreter.interpret(e));
+    }
   }
 
   init() async {
-    await firestoreinit();
     await getRoomTypes();
     await getFloors();
     await getRooms();

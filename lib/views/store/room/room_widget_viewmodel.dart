@@ -46,7 +46,7 @@ class RoomWidgetViewModel extends ContextViewModel
 
   String get price => formatPrice(roomType?.price);
 
-  String get capacity => formatCapacity(roomType?.capcity);
+  String get capacity => formatCapacity(roomType?.capacity);
 
   Future showBuyModal(BuildContext context) async {
     //...

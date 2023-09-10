@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostels/app/app.router.dart';
 import 'package:hostels/models/room.dart';
 import 'package:hostels/views/rooms/room/room_widget_viewmodel.dart';
 import 'package:hostels/views/rooms/rooms_viewmodel.dart';
@@ -114,6 +115,9 @@ class RoomPopupMenu extends ViewModelWidget<RoomsViewModel> {
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry>[
           PopupMenuItem(
+            onTap: () async {
+              viewModel.nav.navigateToEditRoomView(room: room);
+            },
             child: GestureDetector(
               child: const Text(
                 "Edit",

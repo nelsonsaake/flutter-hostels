@@ -7,5 +7,9 @@ class StringResources {
 
   static String rooms = "Rooms";
 
+  static String floors = "Rooms";
+
   static String users = "Users";
+
+  static String roomTypes = "Room Types";
 }

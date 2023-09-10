@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:hostels/helpers/format_capacity.dart';
 import 'package:hostels/helpers/format_price.dart';
 import 'package:hostels/models/floor.dart';
 import 'package:hostels/models/room.dart';
 import 'package:hostels/models/room_type.dart';
-import 'package:hostels/paystack/service/paystack_service.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_mixin.dart';
@@ -47,27 +45,7 @@ class RoomWidgetViewModel extends ContextViewModel
 
   String get price => formatPrice(roomType?.price);
 
-  String get capacity => formatCapacity(roomType?.capcity);
-
-  Future showBuyModal(BuildContext context) async {
-    //...
-
-    final email = user?.email;
-
-    if (email == null) {
-      showMessage("please login to continue");
-      return;
-    }
-
-    final amount = roomType?.price;
-
-    if (amount == null) {
-      showMessage("something went wrong, please try another room");
-      return;
-    }
-
-    return PaystackService.showModal(context, email, amount);
-  }
+  String get capacity => formatCapacity(roomType?.capacity);
 
   init() async {
     //...

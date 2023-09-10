@@ -48,4 +48,9 @@ class Floors {
 
     return floor;
   }
+
+  static Future delete(String? id) async {
+    if (id == null) return;
+    return ref.document(id).delete();
+  }
 }

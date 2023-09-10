@@ -8,25 +8,25 @@ Future seedRoomTypes() async {
       name: "One in a room",
       image: ImageResources.one,
       price: 5000,
-      capcity: 1,
+      capacity: 1,
     ),
     const RoomType(
       name: "Two in a room",
       image: ImageResources.two,
       price: 4000,
-      capcity: 2,
+      capacity: 2,
     ),
     const RoomType(
       name: "Four in a room",
       image: ImageResources.three,
       price: 3000,
-      capcity: 4,
+      capacity: 4,
     ),
     const RoomType(
       name: "Six in a room",
       image: ImageResources.four,
       price: 2000,
-      capcity: 6,
+      capacity: 6,
     ),
   ];
 

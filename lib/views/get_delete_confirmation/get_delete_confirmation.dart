@@ -30,7 +30,7 @@ Future<bool?> getDeleteConfirmation(
                       ),
                     ),
                     Text(
-                      "Are you show you want to delete this $resource?",
+                      "Are you show you want to delete $resource?",
                     ),
                     const Space.vertical(16),
                   ],

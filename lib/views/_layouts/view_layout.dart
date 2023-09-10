@@ -190,8 +190,12 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
             {
               "Rooms": viewModel.nav.navigateToRoomsView,
             },
-            "Floors",
-            "RoomTypes",
+            {
+              "Floors": viewModel.nav.navigateToFloorsView,
+            },
+            {
+              "RoomTypes": viewModel.nav.navigateToRoomTypesView,
+            },
           ].map(
             (v) {
               String title = "";

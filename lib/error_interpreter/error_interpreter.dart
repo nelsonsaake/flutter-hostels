@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firedart/firedart.dart';
 import 'package:hostels/error_interpreter/firebase_error_interpreter.dart';
+import 'package:hostels/error_interpreter/grpc_error_interpreter.dart';
 
 import 'dio_error_interpreter.dart';
 
@@ -23,6 +25,8 @@ class ErrorInterpreter {
         return FirebaseErrorInterpreter().interpret(e);
       case Exception:
         return interpretException(e);
+      case GrpcError:
+        return GrpcErrorInterpreter().interpret(e);
       default:
         return "unknown error: $e";
     }

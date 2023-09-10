@@ -22,8 +22,12 @@ class MyApp extends StatelessWidget {
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       initialRoute: [
-        Routes.roomsView,
         Routes.playgroundView,
+        Routes.roomTypesView,
+        Routes.createRoomTypeView,
+        Routes.floorsView,
+        Routes.createRoomView,
+        Routes.roomsView,
         Routes.roomsView,
         Routes.registerView,
         Routes.loginView,
