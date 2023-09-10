@@ -54,12 +54,15 @@ class PlaygroundViewModel extends ContextViewModel
     await login(_email, _password);
   }
 
-  onPressed() async {
-    //...
+  Future runSeeder() async {
     await do1();
-    // await toggleIsAdmin(_email);
     await fresh();
     await seed();
     await getUsers();
+  }
+
+  onPressed() async {
+    //...
+    await runSeeder();
   }
 }

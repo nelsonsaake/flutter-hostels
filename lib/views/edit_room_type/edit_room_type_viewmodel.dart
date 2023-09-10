@@ -11,7 +11,7 @@ class EditRoomTypeViewModel extends ContextViewModel
   EditRoomTypeViewModel(this.roomType)
       : name = TextEditingController(text: roomType.name),
         capacity = TextEditingController(text: roomType.capacity?.toString()),
-        price = TextEditingController(text: roomType.capacity?.toString()),
+        price = TextEditingController(text: roomType.price?.toString()),
         description = TextEditingController(text: roomType.description);
 
   final RoomType roomType;
@@ -50,6 +50,7 @@ class EditRoomTypeViewModel extends ContextViewModel
     }
     await saveRoomType(RoomType(
       id: roomType.id,
+      image: roomType.image,
       name: name.text,
       capacity: int.tryParse(capacity.text),
       price: double.tryParse(price.text),

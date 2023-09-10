@@ -4,6 +4,7 @@ class RoomType {
     this.name,
     this.capacity,
     this.image,
+    this.currency,
     this.price,
     this.description,
   });
@@ -11,6 +12,7 @@ class RoomType {
   final int? capacity;
   final String? name;
   final String? image;
+  final String? currency;
   final double? price;
   final String? description;
 
@@ -21,6 +23,7 @@ class RoomType {
         name = json['name'],
         capacity = json['capacity'],
         image = json['image'],
+        currency = json['currency'],
         price = json['price'],
         description = json['description'];
 
@@ -30,6 +33,7 @@ class RoomType {
     data['name'] = name;
     data['capacity'] = capacity;
     data['image'] = image;
+    data['currency'] = currency;
     data['price'] = price;
     data['description'] = description;
     return data;

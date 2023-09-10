@@ -22,5 +22,11 @@ abstract class ContextViewModel extends BaseViewModel
     return _viewkey!;
   }
 
+  // refresh
+
+  void refresh() {
+    notifyListeners();
+  }
+
   //...
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostels/widgets/busy_indicator/busy_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaystackWebView extends StatefulWidget {
@@ -38,15 +39,6 @@ class _PaystackWebViewState extends State<PaystackWebView> {
         ),
       );
     super.initState();
-  }
-
-  Center buildBusyIndicator() {
-    return Center(
-      key: busyIndicatorKey,
-      child: const CircularProgressIndicator(
-        strokeWidth: 4,
-      ),
-    );
   }
 
   Center buildErrorMessage() {
@@ -90,14 +82,31 @@ class _PaystackWebViewState extends State<PaystackWebView> {
         //...
 
         if (isBusy) {
-          return buildBusyIndicator();
+          return const BusyIndicator(
+            color: Colors.orange,
+          );
         }
 
         if (snapshot.hasData) {
-          return buildWebView(snapshot);
+          return Stack(
+            children: [
+              const Positioned.fill(
+                child: Center(
+                  child: BusyIndicator(
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                child: buildWebView(snapshot),
+              )
+            ],
+          );
         }
 
-        return buildBusyIndicator();
+        return const BusyIndicator(
+          color: Colors.red,
+        );
       },
     );
   }

@@ -82,7 +82,9 @@ class RoomPopupMenu extends ViewModelWidget<RoomTypesViewModel> {
         return <PopupMenuEntry>[
           PopupMenuItem(
             onTap: () async {
-              viewModel.nav.navigateToEditRoomTypeView(roomType: roomType);
+              viewModel.nav
+                  .navigateToEditRoomTypeView(roomType: roomType)
+                  .then((_) => viewModel.refresh());
             },
             child: GestureDetector(
               child: const Text(

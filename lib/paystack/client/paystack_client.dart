@@ -13,4 +13,9 @@ abstract class PaystackClient {
   Future<GetPaymentUrlResponse> getPaymentUrl(
     @Body() GetPaymentUrlRequest req,
   );
+
+  @GET("/transaction/verify")
+  Future<GetPaymentUrlResponse> verifyPayment(
+    @Body() GetPaymentUrlRequest req,
+  );
 }
