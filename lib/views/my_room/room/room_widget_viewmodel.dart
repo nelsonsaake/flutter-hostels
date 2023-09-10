@@ -16,8 +16,8 @@ class RoomWidgetViewModel extends ContextViewModel
         FirebaseAuthViewModelMixin,
         GetRoomsViewModelMixin,
         GetFloorsViewModelMixin,
-        GetRoomTypesViewModelMixin,
-        GetPaymentsViewModelMixin {
+        GetPaymentsViewModelMixin,
+        GetRoomTypesViewModelMixin {
   //...
 
   RoomWidgetViewModel(this.room);

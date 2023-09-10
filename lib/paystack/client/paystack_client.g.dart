@@ -21,14 +21,14 @@ class _PaystackClient implements PaystackClient {
   String? baseUrl;
 
   @override
-  Future<GetPaymentUrlResponse> getPaymentUrl(req) async {
+  Future<CreatePaymentResponse> createPayment(req) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(req.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetPaymentUrlResponse>(Options(
+        _setStreamType<CreatePaymentResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -40,31 +40,30 @@ class _PaystackClient implements PaystackClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetPaymentUrlResponse.fromJson(_result.data!);
+    final value = CreatePaymentResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<GetPaymentUrlResponse> verifyPayment(req) async {
+  Future<VerifyPaymentResponse> verifyPayment(reference) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(req.toJson());
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetPaymentUrlResponse>(Options(
+        _setStreamType<VerifyPaymentResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/transaction/verify',
+              '/transaction/verify/${reference}',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetPaymentUrlResponse.fromJson(_result.data!);
+    final value = VerifyPaymentResponse.fromJson(_result.data!);
     return value;
   }
 

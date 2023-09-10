@@ -170,6 +170,7 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
         if (viewModel.isLoggedIn)
           buildDrawerTile(
             "My Room",
+            viewModel.nav.navigateToMyRoomView,
           ),
 
         buildDrawerTile(
@@ -186,7 +187,9 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
             {
               "Users": viewModel.nav.navigateToUsersView,
             },
-            "Payments",
+            {
+              "Payments": viewModel.nav.navigateToPaymentsView,
+            },
             {
               "Rooms": viewModel.nav.navigateToRoomsView,
             },
@@ -198,18 +201,8 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
             },
           ].map(
             (v) {
-              String title = "";
-              VoidCallback action = () {};
-
-              if (v is String) {
-                title = v;
-              }
-
-              if (v is Map<String, VoidCallback>) {
-                title = v.entries.first.key;
-                action = v.entries.first.value;
-              }
-
+              String title = v.entries.first.key;
+              VoidCallback action = v.entries.first.value;
               return buildDrawerTile(
                 title,
                 action,

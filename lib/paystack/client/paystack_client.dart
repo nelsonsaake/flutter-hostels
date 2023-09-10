@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:hostels/paystack/models/get_payment_url_request.dart';
-import 'package:hostels/paystack/models/get_payment_url_response.dart';
+import 'package:hostels/paystack/models/create_payment_request.dart';
+import 'package:hostels/paystack/models/create_payment_response.dart';
+import 'package:hostels/paystack/models/verify_payment_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'paystack_client.g.dart';
@@ -10,12 +11,12 @@ abstract class PaystackClient {
   factory PaystackClient(Dio dio, {String baseUrl}) = _PaystackClient;
 
   @POST("/transaction/initialize")
-  Future<GetPaymentUrlResponse> getPaymentUrl(
-    @Body() GetPaymentUrlRequest req,
+  Future<CreatePaymentResponse> createPayment(
+    @Body() CreatePaymentRequest req,
   );
 
-  @GET("/transaction/verify")
-  Future<GetPaymentUrlResponse> verifyPayment(
-    @Body() GetPaymentUrlRequest req,
+  @GET("/transaction/verify/{reference}")
+  Future<VerifyPaymentResponse> verifyPayment(
+    @Path("reference") String reference,
   );
 }

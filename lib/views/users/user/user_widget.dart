@@ -43,7 +43,7 @@ class UserWidget extends ViewModelWidget<UsersViewModel> {
       radius: 36,
       child: CachedNetworkImage(
         imageUrl: user.photoURL ?? "",
-        imageBuilder: (context, imageProvider) {
+        errorWidget: (context, url, error) {
           return Image.asset(
             "assets/avatars/1.png",
             fit: BoxFit.cover,

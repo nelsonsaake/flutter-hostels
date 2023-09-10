@@ -3,19 +3,22 @@ import 'package:hostels/app/app.router.dart';
 import 'package:hostels/helpers/format_capacity.dart';
 import 'package:hostels/helpers/format_price.dart';
 import 'package:hostels/models/floor.dart';
+import 'package:hostels/models/payment.dart';
 import 'package:hostels/models/room.dart';
 import 'package:hostels/models/room_type.dart';
 import 'package:hostels/paystack/service/paystack_service.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_mixin.dart';
+import 'package:hostels/viewmodels/context_viewmodel_mixin/get_payments_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmodel_mixin.dart';
 
 class RoomWidgetViewModel extends ContextViewModel
     with
         FirebaseAuthViewModelMixin,
         GetFloorsViewModelMixin,
-        GetRoomTypesViewModelMixin {
+        GetRoomTypesViewModelMixin,
+        GetPaymentsViewModelMixin {
   //...
 
   RoomWidgetViewModel(this.room);
@@ -46,9 +49,22 @@ class RoomWidgetViewModel extends ContextViewModel
 
   String get price => formatPrice(roomType?.price);
 
-  String get capacity => formatCapacity(roomType?.capacity);
+  String get capacity => formatCapacity(
+        countPaymentForThisRoom(),
+        roomType?.capacity,
+      );
 
-  Future showBuyModal(BuildContext context) async {
+  int countPaymentForThisRoom() {
+    int sum = 0;
+    for (Payment p in payments) {
+      if (p.roomId == room.id) {
+        sum++;
+      }
+    }
+    return sum;
+  }
+
+  Future _showBuyModal(BuildContext context) async {
     //...
 
     final email = user?.email;
@@ -65,7 +81,17 @@ class RoomWidgetViewModel extends ContextViewModel
       return;
     }
 
-    return PaystackService.showModal(context, email, amount);
+    final payment = Payment(
+      amount: amount,
+      email: email,
+      roomId: room.id,
+    );
+
+    return PaystackService.showModal(context, payment);
+  }
+
+  Future showBuyModal(BuildContext context) {
+    return runBusyFuture(_showBuyModal(context));
   }
 
   Future onTap(BuildContext context) {

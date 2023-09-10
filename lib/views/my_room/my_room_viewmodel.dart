@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostels/error_interpreter/error_interpreter.dart';
-import 'package:hostels/firestore/collections/rooms.dart';
 import 'package:hostels/models/room.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
@@ -9,44 +7,33 @@ import 'package:hostels/viewmodels/context_viewmodel_mixin/get_payments_viewmode
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/organise_rooms_viewmodel_mixin.dart';
-import 'package:hostels/views/get_delete_confirmation/get_delete_confirmation.dart';
 
-class RoomsViewModel extends ContextViewModel
+class MyRoomViewModel extends ContextViewModel
     with
         FirebaseAuthViewModelMixin,
         GetRoomTypesViewModelMixin,
         GetFloorsViewModelMixin,
         GetRoomsViewModelMixin,
-        GetPaymentsViewModelMixin,
-        OrganiseRoomsViewModelMixin {
+        OrganiseRoomsViewModelMixin,
+        GetPaymentsViewModelMixin {
   //...
 
   final searchKey = GlobalKey();
 
   late TextEditingController search = TextEditingController()
-    ..addListener(() => organiseRoomsForStore());
+    ..addListener(() => notifyListeners());
 
   @override
   String get searchText => search.text;
 
-  Future _delete(BuildContext context, Room room) async {
-    final confirmation = await getDeleteConfirmation(
-      context,
-      resource: "Room",
-    );
-    if (confirmation == true) {
-      await Rooms.delete(room.id);
-      await getRooms();
-      await organiseRoomsForStore();
-    }
+  bool didUserPayForRoom(Room room) {
+    return payments
+        .where((p) => p.roomId == room.id && p.email == user?.email)
+        .isNotEmpty;
   }
 
-  Future delete(BuildContext context, Room room) async {
-    try {
-      await _delete(context, room);
-    } catch (e) {
-      showMessage(ErrorInterpreter.interpret(e));
-    }
+  List<Room> get myRooms {
+    return rooms.where((room) => didUserPayForRoom(room)).toList();
   }
 
   init() async {

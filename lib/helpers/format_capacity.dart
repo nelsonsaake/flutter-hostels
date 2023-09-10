@@ -1,4 +1,3 @@
-String formatCapacity(int? v) {
-  if (v == null) return "";
-  return "$v/$v Available";
+String formatCapacity(int? n, int? d) {
+  return "$n/$d Available";
 }

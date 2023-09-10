@@ -1,11 +1,11 @@
-class GetPaymentUrlRequest {
+class CreatePaymentRequest {
   int? amount;
   String? email;
   Metadata? metadata;
 
-  GetPaymentUrlRequest({this.amount, this.email, this.metadata});
+  CreatePaymentRequest({this.amount, this.email, this.metadata});
 
-  GetPaymentUrlRequest.fromJson(Map<String, dynamic> json) {
+  CreatePaymentRequest.fromJson(Map<String, dynamic> json) {
     amount = json['amount'];
     email = json['email'];
     metadata =
@@ -24,22 +24,19 @@ class GetPaymentUrlRequest {
 }
 
 class Metadata {
-  final int? roomId;
-  final String? userId;
-  final String? userEmail;
+  final String? roomId;
+  final String? email;
 
-  Metadata({this.roomId, this.userId, this.userEmail});
+  Metadata({this.roomId, this.email});
 
   Metadata.fromJson(Map<String, dynamic> json)
       : roomId = json['roomId'],
-        userId = json['userId'],
-        userEmail = json['userEmail'];
+        email = json['email'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['roomId'] = roomId;
-    data['userId'] = userId;
-    data['userEmail'] = userEmail;
+    data['email'] = email;
     return data;
   }
 }

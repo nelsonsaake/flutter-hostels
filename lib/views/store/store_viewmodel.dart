@@ -4,6 +4,7 @@ import 'package:hostels/models/room_type.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_floors_viewmodel_mixin.dart';
+import 'package:hostels/viewmodels/context_viewmodel_mixin/get_payments_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_room_types_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/organise_rooms_viewmodel_mixin.dart';
@@ -15,13 +16,14 @@ class StoreViewModel extends ContextViewModel
         GetRoomTypesViewModelMixin,
         GetFloorsViewModelMixin,
         GetRoomsViewModelMixin,
-        OrganiseRoomsViewModelMixin {
+        OrganiseRoomsViewModelMixin,
+        GetPaymentsViewModelMixin {
   //...
 
   final searchKey = GlobalKey();
 
   late TextEditingController search = TextEditingController()
-    ..addListener(() => organiseRoomsByFloors());
+    ..addListener(() => organiseRoomsForStore());
 
   @override
   String get searchText => search.text;
@@ -48,6 +50,7 @@ class StoreViewModel extends ContextViewModel
     await getRoomTypes();
     await getFloors();
     await getRooms();
-    await organiseRoomsByFloors();
+    await organiseRoomsForStore();
+    await getPayments();
   }
 }

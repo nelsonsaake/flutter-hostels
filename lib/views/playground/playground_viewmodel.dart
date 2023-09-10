@@ -50,12 +50,8 @@ class PlaygroundViewModel extends ContextViewModel
     }
   }
 
-  Future do1() async {
-    await login(_email, _password);
-  }
-
   Future runSeeder() async {
-    await do1();
+    await firestoreinit();
     await fresh();
     await seed();
     await getUsers();

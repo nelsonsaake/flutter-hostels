@@ -1,11 +1,11 @@
-class GetPaymentUrlResponse {
+class CreatePaymentResponse {
   bool? status;
   String? message;
   Data? data;
 
-  GetPaymentUrlResponse({this.status, this.message, this.data});
+  CreatePaymentResponse({this.status, this.message, this.data});
 
-  GetPaymentUrlResponse.fromJson(Map<String, dynamic> json) {
+  CreatePaymentResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;

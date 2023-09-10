@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       initialRoute: [
+        Routes.paymentsView,
+        Routes.loginView,
+        Routes.myRoomView,
         Routes.storeView,
         Routes.playgroundView,
         Routes.roomTypesView,
@@ -30,7 +33,6 @@ class MyApp extends StatelessWidget {
         Routes.createRoomView,
         Routes.roomsView,
         Routes.registerView,
-        Routes.loginView,
         Routes.verifyEmailView,
       ].first,
     );
@@ -41,10 +43,5 @@ class MyApp extends StatelessWidget {
 // 9kJ1xxnYPJW1uDIwjCrN
 
 // user photo management 
-// verify payment, long polling style
-// use the payment records to determine which room is available
-// room current book capacity 
-// total capacity 
-// available capacity
 // edit profile photo
 // splash screen

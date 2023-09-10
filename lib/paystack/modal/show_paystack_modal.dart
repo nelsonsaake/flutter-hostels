@@ -6,7 +6,7 @@ import 'package:hostels/resources/color_resources.dart';
 import 'package:hostels/paystack/modal/paystack_modal.dart';
 import 'package:hostels/widgets/space/space.dart';
 
-Future<dynamic> showPaystackModal(
+Future showPaystackModal(
   BuildContext context,
   Future<String?> getPaystackUrl,
 ) async {

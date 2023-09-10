@@ -36,5 +36,9 @@ final theme = ThemeData(
     shape: CircleBorder(),
   ),
 
+  textTheme: const TextTheme(
+    bodyMedium: TextStyle(fontSize: 16.0),
+  ),
+
   useMaterial3: true,
 );
