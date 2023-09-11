@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       initialRoute: [
+        Routes.storeView,
         Routes.paymentsView,
         Routes.loginView,
         Routes.myRoomView,
-        Routes.storeView,
         Routes.playgroundView,
         Routes.roomTypesView,
         Routes.createRoomTypeView,

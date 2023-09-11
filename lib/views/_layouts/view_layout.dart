@@ -141,6 +141,13 @@ class ViewLayout extends StackedView<ViewLayoutViewModel> {
 
         if (viewModel.isLoggedIn) buildDrawerHeader(viewModel),
 
+        ...buildDrawerSectionHeader("About"),
+
+        buildDrawerTile(
+          "About",
+          viewModel.nav.navigateToAboutView,
+        ),
+
         ...buildDrawerSectionHeader("Account"),
 
         // if logged in show profile, logout button

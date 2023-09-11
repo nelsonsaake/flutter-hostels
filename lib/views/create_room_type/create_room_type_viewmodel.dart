@@ -31,7 +31,7 @@ class CreateRoomTypeViewModel extends ContextViewModel
 
   showSuccessMessage() {
     if (hasError) return;
-    showMessage("Floor created successfully");
+    showMessage("Create successful");
   }
 
   submit() async {

@@ -5,11 +5,12 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i22;
+import 'package:flutter/material.dart' as _i23;
 import 'package:flutter/material.dart';
-import 'package:hostels/models/floor.dart' as _i24;
-import 'package:hostels/models/room.dart' as _i23;
-import 'package:hostels/models/room_type.dart' as _i25;
+import 'package:hostels/models/floor.dart' as _i25;
+import 'package:hostels/models/room.dart' as _i24;
+import 'package:hostels/models/room_type.dart' as _i26;
+import 'package:hostels/views/about/about_view.dart' as _i22;
 import 'package:hostels/views/create_floor/create_floor_view.dart' as _i15;
 import 'package:hostels/views/create_room/create_room_view.dart' as _i12;
 import 'package:hostels/views/create_room_type/create_room_type_view.dart'
@@ -32,7 +33,7 @@ import 'package:hostels/views/store/store_view.dart' as _i2;
 import 'package:hostels/views/users/users_view.dart' as _i11;
 import 'package:hostels/views/verify_emal/verify_email_view.dart' as _i8;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i26;
+import 'package:stacked_services/stacked_services.dart' as _i27;
 
 class Routes {
   static const storeView = '/store-view';
@@ -75,6 +76,8 @@ class Routes {
 
   static const myRoomView = '/my-room-view';
 
+  static const aboutView = '/about-view';
+
   static const all = <String>{
     storeView,
     roomsView,
@@ -96,6 +99,7 @@ class Routes {
     editRoomTypeView,
     paymentsView,
     myRoomView,
+    aboutView,
   };
 }
 
@@ -181,35 +185,39 @@ class StackedRouter extends _i1.RouterBase {
       Routes.myRoomView,
       page: _i21.MyRoomView,
     ),
+    _i1.RouteDef(
+      Routes.aboutView,
+      page: _i22.AboutView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StoreView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StoreView(),
         settings: data,
       );
     },
     _i3.RoomsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.RoomsView(),
         settings: data,
       );
     },
     _i4.ForgotPasswordView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.ForgotPasswordView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
         settings: data,
       );
     },
     _i6.RegisterView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.RegisterView(),
         settings: data,
       );
@@ -218,7 +226,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ResetPasswordViewArguments>(
         orElse: () => const ResetPasswordViewArguments(),
       );
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i7.ResetPasswordView(key: args.key, email: args.email),
         settings: data,
@@ -228,91 +236,97 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<VerifyEmailViewArguments>(
         orElse: () => const VerifyEmailViewArguments(),
       );
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i8.VerifyEmailView(key: args.key, email: args.email),
         settings: data,
       );
     },
     _i9.PlaygroundView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.PlaygroundView(),
         settings: data,
       );
     },
     _i10.ProfileView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.ProfileView(),
         settings: data,
       );
     },
     _i11.UsersView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.UsersView(),
         settings: data,
       );
     },
     _i12.CreateRoomView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.CreateRoomView(),
         settings: data,
       );
     },
     _i13.EditRoomView: (data) {
       final args = data.getArgs<EditRoomViewArguments>(nullOk: false);
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => _i13.EditRoomView(args.room, key: args.key),
         settings: data,
       );
     },
     _i14.FloorsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.FloorsView(),
         settings: data,
       );
     },
     _i15.CreateFloorView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.CreateFloorView(),
         settings: data,
       );
     },
     _i16.EditFloorView: (data) {
       final args = data.getArgs<EditFloorViewArguments>(nullOk: false);
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => _i16.EditFloorView(args.floor, key: args.key),
         settings: data,
       );
     },
     _i17.RoomTypesView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i17.RoomTypesView(),
         settings: data,
       );
     },
     _i18.CreateRoomTypeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.CreateRoomTypeView(),
         settings: data,
       );
     },
     _i19.EditRoomTypeView: (data) {
       final args = data.getArgs<EditRoomTypeViewArguments>(nullOk: false);
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i19.EditRoomTypeView(args.roomType, key: args.key),
         settings: data,
       );
     },
     _i20.PaymentsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i20.PaymentsView(),
         settings: data,
       );
     },
     _i21.MyRoomView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i21.MyRoomView(),
+        settings: data,
+      );
+    },
+    _i22.AboutView: (data) {
+      return _i23.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i22.AboutView(),
         settings: data,
       );
     },
@@ -330,7 +344,7 @@ class ResetPasswordViewArguments {
     this.email,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String? email;
 
@@ -357,7 +371,7 @@ class VerifyEmailViewArguments {
     this.email,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final String? email;
 
@@ -384,9 +398,9 @@ class EditRoomViewArguments {
     this.key,
   });
 
-  final _i23.Room room;
+  final _i24.Room room;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -411,9 +425,9 @@ class EditFloorViewArguments {
     this.key,
   });
 
-  final _i24.Floor floor;
+  final _i25.Floor floor;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -438,9 +452,9 @@ class EditRoomTypeViewArguments {
     this.key,
   });
 
-  final _i25.RoomType roomType;
+  final _i26.RoomType roomType;
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   @override
   String toString() {
@@ -459,7 +473,7 @@ class EditRoomTypeViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i26.NavigationService {
+extension NavigatorStateExtension on _i27.NavigationService {
   Future<dynamic> navigateToStoreView([
     int? routerId,
     bool preventDuplicates = true,
@@ -531,7 +545,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToResetPasswordView({
-    _i22.Key? key,
+    _i23.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -548,7 +562,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToVerifyEmailView({
-    _i22.Key? key,
+    _i23.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -621,8 +635,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToEditRoomView({
-    required _i23.Room room,
-    _i22.Key? key,
+    required _i24.Room room,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -666,8 +680,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToEditFloorView({
-    required _i24.Floor floor,
-    _i22.Key? key,
+    required _i25.Floor floor,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -711,8 +725,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToEditRoomTypeView({
-    required _i25.RoomType roomType,
-    _i22.Key? key,
+    required _i26.RoomType roomType,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -749,6 +763,20 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.myRoomView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.aboutView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -826,7 +854,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithResetPasswordView({
-    _i22.Key? key,
+    _i23.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -843,7 +871,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithVerifyEmailView({
-    _i22.Key? key,
+    _i23.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -916,8 +944,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithEditRoomView({
-    required _i23.Room room,
-    _i22.Key? key,
+    required _i24.Room room,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -961,8 +989,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithEditFloorView({
-    required _i24.Floor floor,
-    _i22.Key? key,
+    required _i25.Floor floor,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1006,8 +1034,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithEditRoomTypeView({
-    required _i25.RoomType roomType,
-    _i22.Key? key,
+    required _i26.RoomType roomType,
+    _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1044,6 +1072,20 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.myRoomView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAboutView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.aboutView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

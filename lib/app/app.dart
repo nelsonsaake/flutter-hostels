@@ -17,6 +17,7 @@ import 'package:hostels/views/room_types/room_types_view.dart';
 import 'package:hostels/views/rooms/rooms_view.dart';
 import 'package:hostels/views/store/store_view.dart';
 import 'package:hostels/views/users/users_view.dart';
+import 'package:hostels/views/about/about_view.dart';
 import 'package:hostels/views/verify_emal/verify_email_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -43,6 +44,7 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: EditRoomTypeView),
     MaterialRoute(page: PaymentsView),
     MaterialRoute(page: MyRoomView),
+    MaterialRoute(page: AboutView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

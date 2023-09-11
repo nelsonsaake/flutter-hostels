@@ -16,4 +16,6 @@ class StringResources {
   static String users = "Users";
 
   static String roomTypes = "Room Types";
+
+  static String atuLogo = "assets/brand/atu-logo.png";
 }
