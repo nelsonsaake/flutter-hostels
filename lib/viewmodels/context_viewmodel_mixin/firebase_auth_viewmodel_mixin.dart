@@ -18,6 +18,10 @@ mixin FirebaseAuthViewModelMixin on ContextViewModel {
 
   bool get isEmailVerified => user?.emailVerified == true;
 
+  // does user have verified
+
+  bool get doesUserHavePhoto => user?.photoURL != null;
+
   // register
 
   Future _register(String email, String password, [String? name]) async {
@@ -107,6 +111,19 @@ mixin FirebaseAuthViewModelMixin on ContextViewModel {
   }
 
   Future updateDisplayName(String displayName) async {
-    return _updateDisplayName(displayName);
+    return runBusyFuture(_updateDisplayName(displayName));
+  }
+
+  // update user photo
+
+  Future _updateUserPhoto(String url) async {
+    await user?.updatePhotoURL(url);
+    await Users.updatePhotoURL(user?.email, url);
+    await refreshUserData();
+  }
+
+  Future updateUserPhoto(String? url) async {
+    if (url == null) return;
+    return runBusyFuture(_updateUserPhoto(url));
   }
 }

@@ -27,6 +27,26 @@ class RoomType {
         price = json['price'],
         description = json['description'];
 
+  RoomType copyWith({
+    String? id,
+    String? name,
+    int? capacity,
+    String? image,
+    String? currency,
+    double? price,
+    String? description,
+  }) {
+    return RoomType(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      capacity: capacity ?? this.capacity,
+      image: image ?? this.image,
+      currency: currency ?? this.currency,
+      price: price ?? this.price,
+      description: description ?? this.description,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

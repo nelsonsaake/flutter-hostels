@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:hostels/resources/string_resources.dart';
 import 'package:hostels/views/_layouts/view_layout.dart';
@@ -103,6 +104,34 @@ class AboutView extends StackedView<LoginViewModel> {
                 const Center(
                   child: Text(
                     "Mobile Application Development",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+                const Space.vertical(64),
+
+                const DottedLine(
+                  dashColor: Colors.white,
+                ),
+
+                const Space.vertical(64),
+
+                const Center(
+                  child: Text(
+                    "flutter project",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+                const Space.vertical(8),
+
+                const Center(
+                  child: Text(
+                    "powered by firebase",
                     style: TextStyle(
                       color: Colors.white,
                     ),

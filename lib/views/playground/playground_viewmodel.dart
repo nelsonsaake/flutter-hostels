@@ -4,9 +4,11 @@ import 'package:hostels/firestore/firestore_config.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/admins_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
+import 'package:hostels/viewmodels/context_viewmodel_mixin/firestorage_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firestore_actions_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_rooms_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/get_users_viewmodel_mixin.dart';
+import 'package:hostels/viewmodels/context_viewmodel_mixin/photo_viewmodel_mixin.dart';
 
 class PlaygroundViewModel extends ContextViewModel
     with
@@ -14,19 +16,25 @@ class PlaygroundViewModel extends ContextViewModel
         FirestoreActionsViewModelMixin,
         AdminsViewModelMixin,
         GetRoomsViewModelMixin,
-        GetUsersViewModelMixin {
+        GetUsersViewModelMixin,
+        FirestrogeViewModelMixin,
+        PhotoViewModelMixin {
   //...
+
+  dynamic _data;
 
   data() {
     //...
 
-    dynamic data = users;
+    dynamic data = _data ?? uploadPercentage;
 
     try {
       if (data == null) return "";
 
       dynamic map;
-      if (data is List) {
+      if (data is List<String>) {
+        map = data;
+      } else if (data is List) {
         map = data.map((v) => v.toMap()).toList();
       } else {
         map = data?.toMap();
@@ -58,7 +66,20 @@ class PlaygroundViewModel extends ContextViewModel
   }
 
   onPressed() async {
+    // login
+    login("nelsonsaakekofi@gmail.com", "password");
+
     //...
-    await runSeeder();
+    _data = null;
+
+    // seed
+    // await runSeeder();
+  }
+
+  init() async {
+    _data = [
+      "playground initialized",
+      DateTime.now(),
+    ].join('\n');
   }
 }

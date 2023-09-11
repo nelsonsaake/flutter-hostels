@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class ColorResources {
   //...
 
+  static const primary = Color(0xFF924368);
+
+  static const success = Color(0xFF43927A);
+
   static const background = Color(0xFFFED7A5);
 
   static const green = Color(0xFF2D4354);

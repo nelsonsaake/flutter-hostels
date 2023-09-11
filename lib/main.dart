@@ -22,11 +22,13 @@ class MyApp extends StatelessWidget {
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       initialRoute: [
+        Routes.roomTypesView,
+        Routes.profileView,
+        Routes.playgroundView,
         Routes.storeView,
         Routes.paymentsView,
         Routes.loginView,
         Routes.myRoomView,
-        Routes.playgroundView,
         Routes.roomTypesView,
         Routes.createRoomTypeView,
         Routes.floorsView,
@@ -39,9 +41,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-// 9kJ1xxnYPJW1uDIwjCrN
-
-// user photo management 
-// edit profile photo
-// splash screen
+// add photos to roomTypesView
+// add room photo to my room view
+// edit room type > reload the page when photo is editted
+// add a photo picker to create room view
+// splash screen and logo

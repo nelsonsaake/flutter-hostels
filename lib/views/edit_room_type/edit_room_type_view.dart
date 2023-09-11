@@ -5,6 +5,7 @@ import 'package:hostels/resources/string_resources.dart';
 import 'package:hostels/views/_layouts/view_layout.dart';
 import 'package:hostels/widgets/buttons/button.dart';
 import 'package:hostels/widgets/input_label/input_label.dart';
+import 'package:hostels/widgets/room_type_image_editor/room_type_image_editor.dart';
 import 'package:hostels/widgets/space/space.dart';
 import 'package:hostels/widgets/text_area/text_area.dart';
 import 'package:hostels/widgets/text_input/text_input.dart';
@@ -38,6 +39,14 @@ class EditRoomTypeView extends StackedView<EditRoomTypeViewModel> {
             const Space(16),
 
             const ViewTitle("Edit Room Type"),
+
+            const Space(50),
+
+            const InputLabel("Image:"),
+
+            const Space(8),
+
+            RoomTypeImageEditor(viewModel.roomType),
 
             const Space(50),
 

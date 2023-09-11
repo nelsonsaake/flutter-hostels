@@ -73,6 +73,24 @@ class Users {
     return save(updatedUser);
   }
 
+  static Future updatePhotoURL(String? email, String url) async {
+    //...
+
+    if (email == null) return null;
+
+    final user = await findByEmail(email);
+
+    if (user == null) return;
+
+    final map = user.toMap();
+
+    map["photoURL"] = url;
+
+    final updatedUser = AppUser.fromMap(map);
+
+    return save(updatedUser);
+  }
+
   static Future<AppUser> set(String id, AppUser user) async {
     //...
 

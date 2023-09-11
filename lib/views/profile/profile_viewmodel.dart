@@ -9,7 +9,9 @@ class ProfileViewModel extends ContextViewModel
 
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController name = TextEditingController();
+  late TextEditingController name = TextEditingController(
+    text: user?.displayName,
+  );
 
   TextEditingController email = TextEditingController();
 

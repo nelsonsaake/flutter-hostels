@@ -6,6 +6,7 @@ import 'package:hostels/widgets/buttons/button.dart';
 import 'package:hostels/widgets/input_label/input_label.dart';
 import 'package:hostels/widgets/space/space.dart';
 import 'package:hostels/widgets/text_input/text_input.dart';
+import 'package:hostels/widgets/user_photo_editor/user_photo_editor.dart';
 import 'package:hostels/widgets/view_title/view_title.dart';
 import 'package:stacked/stacked.dart';
 
@@ -27,8 +28,6 @@ class ProfileView extends StackedView<ProfileViewModel> {
 
       applyPadding: true,
 
-      isBusy: viewModel.isBusy,
-
       child: Builder(
         builder: (context) {
           return Form(
@@ -48,9 +47,15 @@ class ProfileView extends StackedView<ProfileViewModel> {
 
                 const Space.vertical(50),
 
+                const UserProfileEditor(),
+
+                const Space.vertical(16),
+
                 // name
 
                 const InputLabel("Name:"),
+
+                const Space.vertical(8),
 
                 TextInput(
                   controller: viewModel.name,
