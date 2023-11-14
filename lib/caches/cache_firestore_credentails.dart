@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:firedart/firedart.dart';
-import 'package:hostels/caches/cache_using_shared_preferences.dart';
+import 'package:hostels/caches/cache_with_session_storage.dart';
 
 class CachedTokenStore extends TokenStore {
   // mobile
 
   static const _id = "1044dd90-1559-45a7-a8c2-b11f189b36f6";
 
-  static final _cache = CacheUsingSharedPrederences<String>(_id);
+  static final _cache = CacheWithSessionStorage<String>(_id);
 
   static String get data => _cache.get() ?? "";
 

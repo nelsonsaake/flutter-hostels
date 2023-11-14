@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:hostels/firestore/firestore_config.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:hostels/helpers/format_string.dart';
 import 'package:hostels/viewmodels/context_viewmodel/context_viewmodel.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/admins_viewmodel_mixin.dart';
 import 'package:hostels/viewmodels/context_viewmodel_mixin/firebase_auth_viewmodel_mixin.dart';
@@ -21,12 +22,19 @@ class PlaygroundViewModel extends ContextViewModel
         PhotoViewModelMixin {
   //...
 
-  dynamic _data;
+  dynamic __data;
+
+  get _data => __data;
+
+  set _data(v) {
+    __data = v;
+    notifyListeners();
+  }
 
   data() {
     //...
 
-    dynamic data = _data ?? uploadPercentage;
+    dynamic data = _data;
 
     try {
       if (data == null) return "";
@@ -48,38 +56,47 @@ class PlaygroundViewModel extends ContextViewModel
     }
   }
 
-  final _email = FirestoreConfig.email;
-  final _password = FirestoreConfig.password;
-
-  do0() async {
-    await register(_email, _password);
-    if (!isEmailVerified) {
-      await sendEmailVerification();
-    }
-  }
-
-  Future runSeeder() async {
+  Future systemReset() async {
     await firestoreinit();
     await fresh();
     await seed();
-    await getUsers();
+  }
+
+  Future _getToken() async {
+    _data = await FirebaseMessaging.instance.getToken();
+  }
+
+  Future getToken() async {
+    return runBusyFuture(_getToken());
   }
 
   onPressed() async {
-    // login
-    login("nelsonsaakekofi@gmail.com", "password");
-
     //...
-    _data = null;
-
-    // seed
-    // await runSeeder();
+    await getToken();
+    print(_data);
   }
 
   init() async {
-    _data = [
-      "playground initialized",
-      DateTime.now(),
-    ].join('\n');
+    //...
+
+    final entries = <dynamic>["start"];
+
+    entries.add(DateTime.now());
+
+    _data = paragraph(entries);
+
+    entries.add("playground initializing");
+
+    _data = paragraph(entries);
+
+    await login("email", "some-secrete-information");
+
+    entries.add("logged in successful");
+
+    _data = paragraph(entries);
+
+    entries.add("playground initialized");
+
+    _data = paragraph(entries);
   }
 }

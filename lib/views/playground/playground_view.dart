@@ -4,7 +4,6 @@ import 'package:hostels/views/_layouts/view_layout.dart';
 import 'package:hostels/views/playground/playground_viewmodel.dart';
 import 'package:hostels/widgets/buttons/button.dart';
 import 'package:hostels/widgets/space/space.dart';
-import 'package:hostels/widgets/user_photo_editor/user_photo_editor.dart';
 import 'package:stacked/stacked.dart';
 
 class PlaygroundView extends StackedView<PlaygroundViewModel> {
@@ -90,10 +89,6 @@ class PlaygroundView extends StackedView<PlaygroundViewModel> {
               ),
             ),
           ),
-
-          const Space.vertical(60),
-
-          const UserProfileEditor(),
 
           const Space.vertical(60),
 
