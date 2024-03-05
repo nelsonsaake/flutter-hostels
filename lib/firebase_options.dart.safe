@@ -50,22 +50,24 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA0WgN0MUbSMjnzIdosj5DQwukhbTULWi4',
-    appId: '1:901402058388:web:b67a4bdcdcd31a97c25e81',
-    messagingSenderId: '901402058388',
-    projectId: 'flutterfirebaseauth-1c71a',
-    authDomain: 'flutterfirebaseauth-1c71a.firebaseapp.com',
-    databaseURL: 'https://flutterfirebaseauth-1c71a.firebaseio.com',
-    storageBucket: 'flutterfirebaseauth-1c71a.appspot.com',
-    measurementId: 'G-6CP2W09NXS',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    databaseURL: '',
+    storageBucket: '',
+    measurementId: '',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAb8DdSAfTtrmacn7wLERHJA1O0PqEF0vQ',
-    appId: '1:901402058388:android:2d1685cbe604814dc25e81',
-    messagingSenderId: '901402058388',
-    projectId: 'flutterfirebaseauth-1c71a',
-    databaseURL: 'https://flutterfirebaseauth-1c71a.firebaseio.com',
-    storageBucket: 'flutterfirebaseauth-1c71a.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    databaseURL: '',
+    storageBucket: '',
+    measurementId: '',
   );
 }
