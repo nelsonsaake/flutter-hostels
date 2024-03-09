@@ -89,7 +89,7 @@ class PlaygroundViewModel extends ContextViewModel
 
     _data = paragraph(entries);
 
-    await login("nelsonsaakekofi@gmail.com", "password");
+    await login("email", "some-secrete-information");
 
     entries.add("logged in successful");
 

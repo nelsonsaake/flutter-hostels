@@ -86,6 +86,10 @@ mixin FirebaseAuthViewModelMixin on ContextViewModel {
     await fd.FirebaseAuth.instance.signIn(email, password);
   }
 
+  // Future _firedartLoginWithOtp(String email, String password) async {
+  //   await fd.FirebaseAuth.instance.signIn(email, password);
+  // }
+
   // def firedart login
 
   Future firestoreinit() async {

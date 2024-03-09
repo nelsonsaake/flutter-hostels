@@ -32,10 +32,11 @@ class MyApp extends StatelessWidget {
         );
       },
       initialRoute: [
+        Routes.loginWithOtpView,
+        Routes.storeView,
         Routes.playgroundView,
         Routes.roomTypesView,
         Routes.profileView,
-        Routes.storeView,
         Routes.paymentsView,
         Routes.loginView,
         Routes.myRoomView,

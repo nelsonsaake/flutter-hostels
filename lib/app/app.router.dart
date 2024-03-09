@@ -5,35 +5,36 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i23;
+import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
-import 'package:hostels/models/floor.dart' as _i25;
-import 'package:hostels/models/room.dart' as _i24;
-import 'package:hostels/models/room_type.dart' as _i26;
-import 'package:hostels/views/about/about_view.dart' as _i22;
-import 'package:hostels/views/create_floor/create_floor_view.dart' as _i15;
-import 'package:hostels/views/create_room/create_room_view.dart' as _i12;
+import 'package:hostels/models/floor.dart' as _i26;
+import 'package:hostels/models/room.dart' as _i25;
+import 'package:hostels/models/room_type.dart' as _i27;
+import 'package:hostels/views/about/about_view.dart' as _i23;
+import 'package:hostels/views/create_floor/create_floor_view.dart' as _i16;
+import 'package:hostels/views/create_room/create_room_view.dart' as _i13;
 import 'package:hostels/views/create_room_type/create_room_type_view.dart'
-    as _i18;
-import 'package:hostels/views/edit_floor/edit_floor_view.dart' as _i16;
-import 'package:hostels/views/edit_room/edit_room_view.dart' as _i13;
-import 'package:hostels/views/edit_room_type/edit_room_type_view.dart' as _i19;
-import 'package:hostels/views/floors/floors_view.dart' as _i14;
+    as _i19;
+import 'package:hostels/views/edit_floor/edit_floor_view.dart' as _i17;
+import 'package:hostels/views/edit_room/edit_room_view.dart' as _i14;
+import 'package:hostels/views/edit_room_type/edit_room_type_view.dart' as _i20;
+import 'package:hostels/views/floors/floors_view.dart' as _i15;
 import 'package:hostels/views/forgot_password/forgot_password_view.dart' as _i4;
 import 'package:hostels/views/login/login_view.dart' as _i5;
-import 'package:hostels/views/my_room/my_room_view.dart' as _i21;
-import 'package:hostels/views/payments/payments_view.dart' as _i20;
-import 'package:hostels/views/playground/playground_view.dart' as _i9;
-import 'package:hostels/views/profile/profile_view.dart' as _i10;
-import 'package:hostels/views/register/register_view.dart' as _i6;
-import 'package:hostels/views/reset_password/reset_password_view.dart' as _i7;
-import 'package:hostels/views/room_types/room_types_view.dart' as _i17;
+import 'package:hostels/views/login_with_otp/login_with_otp_view.dart' as _i6;
+import 'package:hostels/views/my_room/my_room_view.dart' as _i22;
+import 'package:hostels/views/payments/payments_view.dart' as _i21;
+import 'package:hostels/views/playground/playground_view.dart' as _i10;
+import 'package:hostels/views/profile/profile_view.dart' as _i11;
+import 'package:hostels/views/register/register_view.dart' as _i7;
+import 'package:hostels/views/reset_password/reset_password_view.dart' as _i8;
+import 'package:hostels/views/room_types/room_types_view.dart' as _i18;
 import 'package:hostels/views/rooms/rooms_view.dart' as _i3;
 import 'package:hostels/views/store/store_view.dart' as _i2;
-import 'package:hostels/views/users/users_view.dart' as _i11;
-import 'package:hostels/views/verify_emal/verify_email_view.dart' as _i8;
+import 'package:hostels/views/users/users_view.dart' as _i12;
+import 'package:hostels/views/verify_emal/verify_email_view.dart' as _i9;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i27;
+import 'package:stacked_services/stacked_services.dart' as _i28;
 
 class Routes {
   static const storeView = '/store-view';
@@ -43,6 +44,8 @@ class Routes {
   static const forgotPasswordView = '/forgot-password-view';
 
   static const loginView = '/login-view';
+
+  static const loginWithOtpView = '/login-with-otp-view';
 
   static const registerView = '/register-view';
 
@@ -83,6 +86,7 @@ class Routes {
     roomsView,
     forgotPasswordView,
     loginView,
+    loginWithOtpView,
     registerView,
     resetPasswordView,
     verifyEmailView,
@@ -122,211 +126,221 @@ class StackedRouter extends _i1.RouterBase {
       page: _i5.LoginView,
     ),
     _i1.RouteDef(
+      Routes.loginWithOtpView,
+      page: _i6.LoginWithOtpView,
+    ),
+    _i1.RouteDef(
       Routes.registerView,
-      page: _i6.RegisterView,
+      page: _i7.RegisterView,
     ),
     _i1.RouteDef(
       Routes.resetPasswordView,
-      page: _i7.ResetPasswordView,
+      page: _i8.ResetPasswordView,
     ),
     _i1.RouteDef(
       Routes.verifyEmailView,
-      page: _i8.VerifyEmailView,
+      page: _i9.VerifyEmailView,
     ),
     _i1.RouteDef(
       Routes.playgroundView,
-      page: _i9.PlaygroundView,
+      page: _i10.PlaygroundView,
     ),
     _i1.RouteDef(
       Routes.profileView,
-      page: _i10.ProfileView,
+      page: _i11.ProfileView,
     ),
     _i1.RouteDef(
       Routes.usersView,
-      page: _i11.UsersView,
+      page: _i12.UsersView,
     ),
     _i1.RouteDef(
       Routes.createRoomView,
-      page: _i12.CreateRoomView,
+      page: _i13.CreateRoomView,
     ),
     _i1.RouteDef(
       Routes.editRoomView,
-      page: _i13.EditRoomView,
+      page: _i14.EditRoomView,
     ),
     _i1.RouteDef(
       Routes.floorsView,
-      page: _i14.FloorsView,
+      page: _i15.FloorsView,
     ),
     _i1.RouteDef(
       Routes.createFloorView,
-      page: _i15.CreateFloorView,
+      page: _i16.CreateFloorView,
     ),
     _i1.RouteDef(
       Routes.editFloorView,
-      page: _i16.EditFloorView,
+      page: _i17.EditFloorView,
     ),
     _i1.RouteDef(
       Routes.roomTypesView,
-      page: _i17.RoomTypesView,
+      page: _i18.RoomTypesView,
     ),
     _i1.RouteDef(
       Routes.createRoomTypeView,
-      page: _i18.CreateRoomTypeView,
+      page: _i19.CreateRoomTypeView,
     ),
     _i1.RouteDef(
       Routes.editRoomTypeView,
-      page: _i19.EditRoomTypeView,
+      page: _i20.EditRoomTypeView,
     ),
     _i1.RouteDef(
       Routes.paymentsView,
-      page: _i20.PaymentsView,
+      page: _i21.PaymentsView,
     ),
     _i1.RouteDef(
       Routes.myRoomView,
-      page: _i21.MyRoomView,
+      page: _i22.MyRoomView,
     ),
     _i1.RouteDef(
       Routes.aboutView,
-      page: _i22.AboutView,
+      page: _i23.AboutView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StoreView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StoreView(),
         settings: data,
       );
     },
     _i3.RoomsView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.RoomsView(),
         settings: data,
       );
     },
     _i4.ForgotPasswordView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.ForgotPasswordView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
         settings: data,
       );
     },
-    _i6.RegisterView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.RegisterView(),
+    _i6.LoginWithOtpView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i6.LoginWithOtpView(),
         settings: data,
       );
     },
-    _i7.ResetPasswordView: (data) {
+    _i7.RegisterView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.RegisterView(),
+        settings: data,
+      );
+    },
+    _i8.ResetPasswordView: (data) {
       final args = data.getArgs<ResetPasswordViewArguments>(
         orElse: () => const ResetPasswordViewArguments(),
       );
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i7.ResetPasswordView(key: args.key, email: args.email),
+            _i8.ResetPasswordView(key: args.key, email: args.email),
         settings: data,
       );
     },
-    _i8.VerifyEmailView: (data) {
+    _i9.VerifyEmailView: (data) {
       final args = data.getArgs<VerifyEmailViewArguments>(
         orElse: () => const VerifyEmailViewArguments(),
       );
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i8.VerifyEmailView(key: args.key, email: args.email),
+            _i9.VerifyEmailView(key: args.key, email: args.email),
         settings: data,
       );
     },
-    _i9.PlaygroundView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.PlaygroundView(),
+    _i10.PlaygroundView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.PlaygroundView(),
         settings: data,
       );
     },
-    _i10.ProfileView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.ProfileView(),
+    _i11.ProfileView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.ProfileView(),
         settings: data,
       );
     },
-    _i11.UsersView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.UsersView(),
+    _i12.UsersView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.UsersView(),
         settings: data,
       );
     },
-    _i12.CreateRoomView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.CreateRoomView(),
+    _i13.CreateRoomView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.CreateRoomView(),
         settings: data,
       );
     },
-    _i13.EditRoomView: (data) {
+    _i14.EditRoomView: (data) {
       final args = data.getArgs<EditRoomViewArguments>(nullOk: false);
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => _i13.EditRoomView(args.room, key: args.key),
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i14.EditRoomView(args.room, key: args.key),
         settings: data,
       );
     },
-    _i14.FloorsView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.FloorsView(),
+    _i15.FloorsView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i15.FloorsView(),
         settings: data,
       );
     },
-    _i15.CreateFloorView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i15.CreateFloorView(),
+    _i16.CreateFloorView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i16.CreateFloorView(),
         settings: data,
       );
     },
-    _i16.EditFloorView: (data) {
+    _i17.EditFloorView: (data) {
       final args = data.getArgs<EditFloorViewArguments>(nullOk: false);
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => _i16.EditFloorView(args.floor, key: args.key),
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i17.EditFloorView(args.floor, key: args.key),
         settings: data,
       );
     },
-    _i17.RoomTypesView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i17.RoomTypesView(),
+    _i18.RoomTypesView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i18.RoomTypesView(),
         settings: data,
       );
     },
-    _i18.CreateRoomTypeView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i18.CreateRoomTypeView(),
+    _i19.CreateRoomTypeView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i19.CreateRoomTypeView(),
         settings: data,
       );
     },
-    _i19.EditRoomTypeView: (data) {
+    _i20.EditRoomTypeView: (data) {
       final args = data.getArgs<EditRoomTypeViewArguments>(nullOk: false);
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i19.EditRoomTypeView(args.roomType, key: args.key),
+            _i20.EditRoomTypeView(args.roomType, key: args.key),
         settings: data,
       );
     },
-    _i20.PaymentsView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i20.PaymentsView(),
+    _i21.PaymentsView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i21.PaymentsView(),
         settings: data,
       );
     },
-    _i21.MyRoomView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i21.MyRoomView(),
+    _i22.MyRoomView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i22.MyRoomView(),
         settings: data,
       );
     },
-    _i22.AboutView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i22.AboutView(),
+    _i23.AboutView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i23.AboutView(),
         settings: data,
       );
     },
@@ -344,7 +358,7 @@ class ResetPasswordViewArguments {
     this.email,
   });
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   final String? email;
 
@@ -371,7 +385,7 @@ class VerifyEmailViewArguments {
     this.email,
   });
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   final String? email;
 
@@ -398,9 +412,9 @@ class EditRoomViewArguments {
     this.key,
   });
 
-  final _i24.Room room;
+  final _i25.Room room;
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   @override
   String toString() {
@@ -425,9 +439,9 @@ class EditFloorViewArguments {
     this.key,
   });
 
-  final _i25.Floor floor;
+  final _i26.Floor floor;
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   @override
   String toString() {
@@ -452,9 +466,9 @@ class EditRoomTypeViewArguments {
     this.key,
   });
 
-  final _i26.RoomType roomType;
+  final _i27.RoomType roomType;
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   @override
   String toString() {
@@ -473,7 +487,7 @@ class EditRoomTypeViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i27.NavigationService {
+extension NavigatorStateExtension on _i28.NavigationService {
   Future<dynamic> navigateToStoreView([
     int? routerId,
     bool preventDuplicates = true,
@@ -530,6 +544,20 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToLoginWithOtpView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.loginWithOtpView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> navigateToRegisterView([
     int? routerId,
     bool preventDuplicates = true,
@@ -545,7 +573,7 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> navigateToResetPasswordView({
-    _i23.Key? key,
+    _i24.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -562,7 +590,7 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> navigateToVerifyEmailView({
-    _i23.Key? key,
+    _i24.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -635,8 +663,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> navigateToEditRoomView({
-    required _i24.Room room,
-    _i23.Key? key,
+    required _i25.Room room,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -680,8 +708,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> navigateToEditFloorView({
-    required _i25.Floor floor,
-    _i23.Key? key,
+    required _i26.Floor floor,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -725,8 +753,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> navigateToEditRoomTypeView({
-    required _i26.RoomType roomType,
-    _i23.Key? key,
+    required _i27.RoomType roomType,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -839,6 +867,20 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> replaceWithLoginWithOtpView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.loginWithOtpView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithRegisterView([
     int? routerId,
     bool preventDuplicates = true,
@@ -854,7 +896,7 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> replaceWithResetPasswordView({
-    _i23.Key? key,
+    _i24.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -871,7 +913,7 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> replaceWithVerifyEmailView({
-    _i23.Key? key,
+    _i24.Key? key,
     String? email,
     int? routerId,
     bool preventDuplicates = true,
@@ -944,8 +986,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> replaceWithEditRoomView({
-    required _i24.Room room,
-    _i23.Key? key,
+    required _i25.Room room,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -989,8 +1031,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> replaceWithEditFloorView({
-    required _i25.Floor floor,
-    _i23.Key? key,
+    required _i26.Floor floor,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1034,8 +1076,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
   }
 
   Future<dynamic> replaceWithEditRoomTypeView({
-    required _i26.RoomType roomType,
-    _i23.Key? key,
+    required _i27.RoomType roomType,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,

@@ -12,9 +12,7 @@ class _NotificationClient implements NotificationClient {
   _NotificationClient(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= '';
-  }
+  });
 
   final Dio _dio;
 
